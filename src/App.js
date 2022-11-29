@@ -5,10 +5,11 @@ import 'bootstrap-icons/font/bootstrap-icons.css';
 import {Routes, Route} from "react-router";
 import {BrowserRouter} from "react-router-dom";
 import Navigation from "./navigation";
-import UserList from "./users";
 import usersReducer from "./reducers/users-reducer";
 import Register from "./register/register";
 import Login from "./login/login";
+import Profile from "./users/profile";
+import ProtectedRoute from "./users/protected-route"
 import CurrentUser from "./users/current-user";
 
 const store = configureStore({
@@ -25,10 +26,13 @@ function App() {
                     <BrowserRouter>
                         <Navigation/>
                         <Routes>
-                            <Route index element={<UserList/>}/>
-                            <Route path="/users" element={<UserList/>}/>
                             <Route path="/register" element={<Register/>}/>
                             <Route path="/login" element={<Login/>}/>
+                            <Route path="/profile" element={
+                                <ProtectedRoute>
+                                    <Profile/>}
+                                </ProtectedRoute>
+                            }/>
                         </Routes>
                     </BrowserRouter>
                 </CurrentUser>

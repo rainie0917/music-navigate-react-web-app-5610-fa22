@@ -1,15 +1,12 @@
 import {useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
+import {Navigate} from "react-router";
 import {registerThunk} from "../services/users-thunks.js";
 
 const Register = () => {
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
     const [validatePassword, setValidatePassword] = useState('')
-    const [email, setEmail] = useState('')
-    const [firstName, setFirstName] = useState('')
-    const [lastName, setlastName] = useState('')
-    const [neuId, setNeuId] = useState('')
     const [error, setError] = useState(null)
     const {currentUser} = useSelector((state) => state.users)
     const dispatch = useDispatch()
@@ -18,9 +15,12 @@ const Register = () => {
             setError('Passwords must match')
             return
         }
-        setError(null)
+        setError('User already exist!')
         const newUser = {username, password}
         dispatch(registerThunk(newUser))
+    }
+    if(currentUser) {
+        return (<Navigate to={'/profile'}/>)
     }
     return(
         <>
@@ -49,30 +49,6 @@ const Register = () => {
                 type="text" 
                 placeholder="Validate Password"
                 onChange={(e) => setValidatePassword(e.target.value)}/>
-            <input
-                className="form-control mb-2"
-                value={email}
-                type="email" 
-                placeholder="Email"
-                onChange={(e) => setEmail(e.target.value)}/>
-            <input
-                className="form-control mb-2"
-                value={firstName}
-                type="text" 
-                placeholder="Firstname"
-                onChange={(e) => setFirstName(e.target.value)}/>
-            <input
-                className="form-control mb-2"
-                value={lastName}
-                type="text" 
-                placeholder="Lastname"
-                onChange={(e) => setlastName(e.target.value)}/>
-            <input
-                className="form-control mb-2"
-                value={neuId}
-                type="text"
-                placeholder="NEU ID"
-                onChange={(e) => setNeuId(e.target.value)}/>
             <button
                 onClick={handleRegisterBtn}
                 className="btn btn-primary w-100">

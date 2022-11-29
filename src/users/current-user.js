@@ -7,7 +7,7 @@ const CurrentUser = ({children}) => {
     const dispatch = useDispatch()
     useEffect(() => {
         dispatch(profileThunk())
-    }, [])
+    }, [dispatch])
     return(children)
 }
 
