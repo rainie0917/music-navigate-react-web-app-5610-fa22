@@ -1,4 +1,4 @@
-import {useEffect} from "react";
+import React, {useEffect} from "react";
 import {profileThunk} from "../services/users-thunks.js";
 import {useDispatch, useSelector} from "react-redux";
 
