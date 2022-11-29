@@ -16,7 +16,7 @@ const Register = () => {
             setError('Passwords must match')
             return
         }
-        setError('User already exist!')
+        setError(null)
         const newUser = {username, password}
         dispatch(registerThunk(newUser))
     }
