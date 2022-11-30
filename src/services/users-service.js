@@ -1,6 +1,6 @@
 import axios from "axios";
 const BASE_API_URL = process.env.MUSIC_APP_BASE_API_URL;
-const USERS_API = `${BASE_API_URL}`;
+const USERS_API = "http://localhost:4000";
 const api = axios.create({withCredentials: "true"});
 
 export const register = async (user) => {
