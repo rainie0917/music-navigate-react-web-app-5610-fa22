@@ -5,15 +5,20 @@ import 'bootstrap-icons/font/bootstrap-icons.css';
 import {Routes, Route} from "react-router";
 import {BrowserRouter} from "react-router-dom";
 import Navigation from "./navigation";
-import UserList from "./users";
 import usersReducer from "./reducers/users-reducer";
 import Register from "./register/register";
 import Login from "./login/login";
+import Profile from "./users/profile";
+import ProtectedRoute from "./users/protected-route"
 import CurrentUser from "./users/current-user";
+import SearchComponent from "./search";
+import ResultComponent from "./result";
+import searchReducer from "./reducers/search-reducer";
 
 const store = configureStore({
     reducer: {
-        users: usersReducer
+        users: usersReducer,
+        search: searchReducer,
     }
 })
 
@@ -25,10 +30,15 @@ function App() {
                     <BrowserRouter>
                         <Navigation/>
                         <Routes>
-                            <Route index element={<UserList/>}/>
-                            <Route path="/users" element={<UserList/>}/>
                             <Route path="/register" element={<Register/>}/>
                             <Route path="/login" element={<Login/>}/>
+                            <Route path="/profile" element={
+                                <ProtectedRoute>
+                                    <Profile/>}
+                                </ProtectedRoute>
+                            }/>
+                            <Route path='/search' element={<SearchComponent/>}/>
+                            <Route path='/search/*' element={<ResultComponent/>}/>
                         </Routes>
                     </BrowserRouter>
                 </CurrentUser>
