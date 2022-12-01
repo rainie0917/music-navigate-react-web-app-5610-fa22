@@ -13,25 +13,38 @@ const Register = () => {
     const [error, setError] = useState(null)
     const {currentUser} = useSelector((state) => state.users)
     const dispatch = useDispatch()
+    const admin = "ADMIN"
+    const invitationCode = "musicappcs5610"
     const handleRegisterBtn = () => {
+        if (username.length === 0 || password.length === 0 || validatePassword.length === 0) {
+            setError('Required field cannot be empty')
+            return
+        }
+        if (password.length < 6) {
+            setError('Password needs to be equal or greater than 6 characters')
+            return
+        }
         if (password !== validatePassword) {
             setError('Passwords must match')
             return
         }
-        if (role === "ADMIN") {
-            if (adminInvitationCode !== "musicappcs5610" || adminInvitationCode.isEmpty()) {
-                setError('Please enter a valid admin invitation code')
+        if (role === admin) {
+            if (adminInvitationCode.length === 0) {
+                setError("Admin invitation code cannot be empty")
+                return
+            }
+            if (adminInvitationCode !== invitationCode) {
+                setError("Your code is invalid")
                 return
             }
         }
-        setError(null)
         const newUser = {username, password, role}
         dispatch(registerThunk(newUser))
+
     }
     if(currentUser) {
         return (<Navigate to={'/profile'}/>)
-    }
-    return(
+    } else return(
         <>
             <h2 className="d-flex justify-content-center text-primary fw-bold mt-3 mb-2">Register</h2>
             {
@@ -41,20 +54,20 @@ const Register = () => {
                 </div>
             }
             <div className="d-flex justify-content-center text-primary mb-2">Sign up for free</div>
-            <div className="ms-2 fs-6 fw-bold">Pick a username</div>
+            <div className="ms-2 fs-6 fw-bold">Pick a username *</div>
             <input className="form-control mb-2"
                 value={username}
                 type="text"
                 placeholder="Username"
                 onChange={(e) => setUsername(e.target.value)}/>
-            <div className="ms-2 fs-6 fw-bold">Enter your password</div>
+            <div className="ms-2 fs-6 fw-bold">Enter your password *</div>
             <input
                 className="form-control mb-2"
                 value={password}
                 type="text"
                 placeholder="Password"
                 onChange={(e) => setPassword(e.target.value)}/>
-            <div className="ms-2 fs-6 fw-bold">Confirm your password</div>
+            <div className="ms-2 fs-6 fw-bold">Confirm your password *</div>
             <input
                 className="form-control mb-2"
                 value={validatePassword}
@@ -62,12 +75,11 @@ const Register = () => {
                 placeholder="Validate Password"
                 onChange={(e) => setValidatePassword(e.target.value)}/>
             <div className="mb-2">
-                <label className="ms-2 fs-6 fw-bold me-2">Choose a role</label>
-                <select id="role">
+                <label className="ms-2 fs-6 fw-bold me-2">Choose a role *</label>
+                <select value={role} onChange={(e) => setRole(e.target.value)}>
                     <option value="FAN">FAN</option>
                     <option value="ARTIST">ARTIST</option>
                     <option value="ADMIN">ADMIN</option>
-                    onChange={(e) => setRole(e.target.value)}
                 </select>
             </div>
             <div className="ms-2 fs-6 fw-bold text-muted">Optional: please enter your admin invitation code if you choose ADMIN as role</div>
@@ -85,6 +97,7 @@ const Register = () => {
                 <label className="mt-1">Have an account?</label>
                 <Link className="ms-1 mt-1" to="/login">Login</Link>
             </div>
+            <div className="ms-2 fs-6 fw-bold text-danger">Fields with * are require field</div>
             {
                 currentUser &&
                 <h2>Welcome {currentUser.username}</h2>
