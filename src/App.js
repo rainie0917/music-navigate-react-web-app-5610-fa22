@@ -14,11 +14,14 @@ import NavigationSidebar from "./navigation-sidebar";
 import ProtectedRoute from "./users/protected-route"
 import CurrentUser from "./users/current-user";
 import {Link} from "react-router-dom";
-
+import SearchComponent from "./search";
+import ResultComponent from "./result";
+import searchReducer from "./reducers/search-reducer";
 
 const store = configureStore({
     reducer: {
-        users: usersReducer
+        users: usersReducer,
+        search: searchReducer,
     }
 })
 
@@ -53,6 +56,8 @@ function App() {
                                             <Profile/>}
                                         </ProtectedRoute>
                                     }/>
+                                    <Route path='/search' element={<SearchComponent/>}/>
+                                    <Route path='/search/*' element={<ResultComponent/>}/>
                                 </Routes>
                             </div>
                         </div>
