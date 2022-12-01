@@ -14,6 +14,7 @@ import Login from "./login/login";
 import Profile from "./users/profile";
 import ProtectedRoute from "./users/protected-route"
 import CurrentUser from "./users/current-user";
+import {Link} from "react-router-dom";
 
 const store = configureStore({
     reducer: {
@@ -30,42 +31,41 @@ function App() {
 
                         <div className="float-md-end">
                             <button type="button"
-                                    className="btn btn-secondary">Log In
+                                    className="btn btn-secondary">
+                                <Link to="/Login">Login</Link>
                             </button>
+
+
                             <button type="button"
-                                    className="btn btn-light">Register
+                                    className="btn btn-light">
+                                <Link to="/register">Register</Link>
                             </button>
                         </div>
 
-                        {/*<Navigation/>*/}
                         <br/>
 
                         <div className="row mt-2">
 
-                        <div className="col-xxl-2 col-xl-2 col-lg-2 col-md-2 col-sm-3">
-                            <NavigationSidebar active="home"/>
-                        </div>
+                            <div className="col-xxl-2 col-xl-2 col-lg-2 col-md-2 col-sm-3">
+                                <NavigationSidebar active="home"/>
 
-                        <div className="col-xxl-10 col-xl-10 col-lg-10 col-md-9 col-sm-9"
-                             style={{"position": "relative"}}>
-                            <Routes>
-                                <Route path="home"    element={<HomeComponent/>}/>
-                                <Route path="/register" element={<Register/>}/>
-                                <Route path="/login" element={<Login/>}/>
-                                <Route path="/profile" element={
-                                    <ProtectedRoute>
-                                        <Profile/>}
-                                    </ProtectedRoute>
-                                }/>
-                             </Routes>
-                        </div>
+                            </div>
+
+                            <div className="col-xxl-10 col-xl-10 col-lg-10 col-md-9 col-sm-9"
+                                 style={{"position": "relative"}}>
+                                <Routes>
+                                    <Route path="home"    element={<HomeComponent/>}/>
+                                    {/*<Route path="/register" element={<Register/>}/>*/}
+                                    {/*<Route path="/login" element={<Login/>}/>*/}
+                                    <Route path="/profile" element={
+                                        <ProtectedRoute>
+                                            <Profile/>}
+                                        </ProtectedRoute>
+                                    }/>
+                                 </Routes>
+                            </div>
 
                         </div>
-
-                        {/*<div className="col-xxl-4 col-xl-4 col-lg-4 d-none d-lg-block">*/}
-                        {/*    <h2>Others</h2>*/}
-                        {/*    /!*<WhoToFollowList/>*!/*/}
-                        {/*</div>*/}
 
 
                     </BrowserRouter>

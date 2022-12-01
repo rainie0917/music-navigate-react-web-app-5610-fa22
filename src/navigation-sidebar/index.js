@@ -10,7 +10,6 @@ const NavigationSidebar = () => {
 
       <div className="list-group">
         {/*<h2>Spotify</h2>*/}
-        {/*<a href="https://twitter.com/explore" className="list-group-item">Tuiter</a>*/}
         <Link to="/home" className={`list-group-item ${active === 'home'?'active':''}`}>
           <i className="bi bi-house-door-fill p-1"></i>
           Home
@@ -33,9 +32,6 @@ const NavigationSidebar = () => {
           Created Playlist
         </Link>
 
-        {/*<a href="https://twitter.com/explore" className={`list-group-item ${active === 'more'?'active':''}`}>*/}
-        {/*  More*/}
-        {/*</a>*/}
       </div>
   );
 };
