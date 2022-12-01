@@ -9,6 +9,7 @@ import usersReducer from "./reducers/users-reducer";
 import Register from "./register/register";
 import Login from "./login/login";
 import Profile from "./users/profile";
+import Users from "./users/index"
 import ProtectedRoute from "./users/protected-route"
 import CurrentUser from "./users/current-user";
 
@@ -26,6 +27,12 @@ function App() {
                     <BrowserRouter>
                         <Navigation/>
                         <Routes>
+                            <Route index element={<Login/>}/>
+                            <Route path="/users" element={
+                                <ProtectedRoute>
+                                    <Users/>
+                                </ProtectedRoute>
+                            }/>
                             <Route path="/register" element={<Register/>}/>
                             <Route path="/login" element={<Login/>}/>
                             <Route path="/profile" element={

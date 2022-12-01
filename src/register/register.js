@@ -2,15 +2,16 @@ import {useState} from "react";
 import {Link} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {registerThunk} from "../services/users-thunks.js";
+import {Navigate, userNavigate} from "react-router";
 
 const Register = () => {
+    const {currentUser} = useSelector((state) => state.users)
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
     const [role, setRole] = useState('')
     const [adminInvitationCode, setAdminInvitationCode] = useState('')
     const [validatePassword, setValidatePassword] = useState('')
     const [error, setError] = useState(null)
-    const {currentUser} = useSelector((state) => state.users)
     const dispatch = useDispatch()
     const admin = "ADMIN"
     const invitationCode = "musicappcs5610"
@@ -27,6 +28,10 @@ const Register = () => {
             setError('Passwords must match')
             return
         }
+        if (role.length === 0) {
+            setError("Please select a role")
+            return
+        }
         if (role === admin) {
             if (adminInvitationCode.length === 0) {
                 setError("Admin invitation code cannot be empty")
@@ -39,6 +44,9 @@ const Register = () => {
         }
         const newUser = {username, password, role}
         dispatch(registerThunk(newUser))
+    }
+    if(currentUser) {
+        return (<Navigate to={'/profile'}/>)
     }
     return(
         <>
@@ -79,7 +87,7 @@ const Register = () => {
             <div className="mb-2">
                 <label className="ms-2 fs-6 fw-bold me-2">Choose a role *</label>
                 <select value={role} onChange={(e) => setRole(e.target.value)}>
-                    <option value="FAN">FAN</option>
+                    <option value="FAN" selected>FAN</option>
                     <option value="ARTIST">ARTIST</option>
                     <option value="ADMIN">ADMIN</option>
                 </select>

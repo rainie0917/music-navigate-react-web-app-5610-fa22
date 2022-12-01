@@ -2,8 +2,8 @@ import {useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {findAllUsersThunk} from "../services/users-thunks.js";
 
-const UserList = () => {
-    const {users} = useSelector((state) => state.users)
+const Users = () => {
+    const {users, loading} = useSelector((state) => state.users)
     const dispatch = useDispatch()
     useEffect(() => {
         dispatch(findAllUsersThunk())
@@ -25,4 +25,4 @@ const UserList = () => {
     )
 }
 
-export default UserList
+export default Users
