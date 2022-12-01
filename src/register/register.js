@@ -7,6 +7,8 @@ import {registerThunk} from "../services/users-thunks.js";
 const Register = () => {
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
+    const [role, setRole] = useState('')
+    const [adminInvitationCode, setAdminInvitationCode] = useState('')
     const [validatePassword, setValidatePassword] = useState('')
     const [error, setError] = useState(null)
     const {currentUser} = useSelector((state) => state.users)
@@ -16,8 +18,14 @@ const Register = () => {
             setError('Passwords must match')
             return
         }
+        if (role === "ADMIN") {
+            if (adminInvitationCode !== "musicappcs5610" || adminInvitationCode.isEmpty()) {
+                setError('Please enter a valid admin invitation code')
+                return
+            }
+        }
         setError(null)
-        const newUser = {username, password}
+        const newUser = {username, password, role}
         dispatch(registerThunk(newUser))
     }
     if(currentUser) {
@@ -29,33 +37,47 @@ const Register = () => {
             {
                 error &&
                 <div className="alert alert-danger mb-2">
-                    {error}
+                {error}
                 </div>
             }
             <div className="d-flex justify-content-center text-primary mb-2">Sign up for free</div>
             <div className="ms-2 fs-6 fw-bold">Pick a username</div>
-            <input
-                className="form-control mb-2"
+            <input className="form-control mb-2"
                 value={username}
-                type="text" 
+                type="text"
                 placeholder="Username"
                 onChange={(e) => setUsername(e.target.value)}/>
             <div className="ms-2 fs-6 fw-bold">Enter your password</div>
             <input
                 className="form-control mb-2"
                 value={password}
-                type="text" 
+                type="text"
                 placeholder="Password"
                 onChange={(e) => setPassword(e.target.value)}/>
             <div className="ms-2 fs-6 fw-bold">Confirm your password</div>
             <input
                 className="form-control mb-2"
                 value={validatePassword}
-                type="text" 
+                type="text"
                 placeholder="Validate Password"
                 onChange={(e) => setValidatePassword(e.target.value)}/>
-            <button
-                onClick={handleRegisterBtn}
+            <div className="mb-2">
+                <label className="ms-2 fs-6 fw-bold me-2">Choose a role</label>
+                <select id="role">
+                    <option value="FAN">FAN</option>
+                    <option value="ARTIST">ARTIST</option>
+                    <option value="ADMIN">ADMIN</option>
+                    onChange={(e) => setRole(e.target.value)}
+                </select>
+            </div>
+            <div className="ms-2 fs-6 fw-bold text-muted">Optional: please enter your admin invitation code if you choose ADMIN as role</div>
+            <input
+                className="form-control mb-2"
+                value={adminInvitationCode}
+                type="text"
+                placeholder="Admin Invitation Code"
+                onChange={(e) => setAdminInvitationCode(e.target.value)}/>
+            <button onClick={handleRegisterBtn}
                 className="btn btn-primary w-100 mb-2">
                 Register
             </button>
