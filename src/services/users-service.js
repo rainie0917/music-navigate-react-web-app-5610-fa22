@@ -1,6 +1,6 @@
 import axios from "axios";
 const MUSIC_API_BASE = process.env.REACT_APP_MUSIC_API_BASE;
-const USERS_API = `${MUSIC_API_BASE}`;
+const USERS_API = `${MUSIC_API_BASE}/users`;
 const api = axios.create({withCredentials: "true"});
 
 export const register = async (user) => {
