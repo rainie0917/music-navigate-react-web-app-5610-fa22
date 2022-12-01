@@ -1,15 +1,14 @@
 import axios from "axios";
-const MUSIC_API_BASE = process.env.REACT_APP_MUSIC_API_BASE;
-const USERS_API = `${MUSIC_API_BASE}`;
-const api = axios.create({withCredentials: "true"});
+// const MUSIC_API_BASE = process.env.REACT_APP_MUSIC_API_BASE;
+const USERS_API = 'http://localhost:4000';
 
 export const register = async (user) => {
-    const response = await api.post(`${USERS_API}/register`, user)
+    const response = await axios.post(`${USERS_API}/register`, user)
     return response.data
 }
 
 export const login = async (user) => {
-    const response = await api.post(`${USERS_API}/login`, user)
+    const response = await axios.post(`${USERS_API}/login`, user)
     console.log(USERS_API)
     return response.data
 }

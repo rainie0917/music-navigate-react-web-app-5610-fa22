@@ -1,7 +1,6 @@
 import {useState} from "react";
 import {Link} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
-import {Navigate} from "react-router";
 import {registerThunk} from "../services/users-thunks.js";
 
 const Register = () => {
@@ -40,17 +39,20 @@ const Register = () => {
         }
         const newUser = {username, password, role}
         dispatch(registerThunk(newUser))
-
     }
-    if(currentUser) {
-        return (<Navigate to={'/profile'}/>)
-    } else return(
+    return(
         <>
             <h2 className="d-flex justify-content-center text-primary fw-bold mt-3 mb-2">Register</h2>
             {
                 error &&
                 <div className="alert alert-danger mb-2">
                 {error}
+                </div>
+            }
+            {
+                currentUser &&
+                <div className="alert alert-success mb-2">
+                You have been registered as {currentUser.username}
                 </div>
             }
             <div className="d-flex justify-content-center text-primary mb-2">Sign up for free</div>
@@ -98,10 +100,6 @@ const Register = () => {
                 <Link className="ms-1 mt-1" to="/login">Login</Link>
             </div>
             <div className="ms-2 fs-6 fw-bold text-danger">Fields with * are require field</div>
-            {
-                currentUser &&
-                <h2>Welcome {currentUser.username}</h2>
-            }
         </>
     )
 }

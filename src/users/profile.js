@@ -11,7 +11,7 @@ const Profile = () => {
         <>
             <button className="btn btn-danger" onClick={handleLogout}>Logout</button>
             <h1>Profile</h1>
-            {<h2>Welcome {currentUser.username}</h2>}
+            <h2>Welcome {currentUser.username}</h2>}
         </>
     )
 }

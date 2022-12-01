@@ -44,10 +44,6 @@ const Login = () => {
                 <label className="mt-1">Have an account? Sign up for free</label>
                 <Link className="ms-1 mt-1" to="/register">Register</Link>
             </div>
-            {
-                currentUser &&
-                <h2>Welcome {currentUser.username}</h2>
-            }
         </>
     )
 }
