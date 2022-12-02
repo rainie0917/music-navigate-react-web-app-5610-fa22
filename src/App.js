@@ -17,6 +17,7 @@ import {Link} from "react-router-dom";
 import SearchComponent from "./search";
 import ResultComponent from "./result";
 import searchReducer from "./reducers/search-reducer";
+import EditProfile from "./users/edit-profile";
 
 const store = configureStore({
     reducer: {
@@ -54,11 +55,16 @@ function App() {
                                     <Route path="/login" element={<Login/>}/>
                                     <Route path="/profile" element={
                                         <ProtectedRoute>
-                                            <Profile/>}
+                                            <Profile/>
                                         </ProtectedRoute>
                                     }/>
                                     <Route path='/search' element={<SearchComponent/>}/>
                                     <Route path='/search/*' element={<ResultComponent/>}/>
+                                    <Route path="/edit-profile" element={
+                                        <ProtectedRoute>
+                                            <EditProfile/>
+                                        </ProtectedRoute>
+                                    }/>
                                 </Routes>
                             </div>
                         </div>

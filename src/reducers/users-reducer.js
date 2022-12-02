@@ -1,5 +1,5 @@
 import {createSlice} from "@reduxjs/toolkit";
-import {profileThunk, logoutThunk, loginThunk, registerThunk} from "../services/users-thunks.js";
+import {profileThunk, logoutThunk, loginThunk, registerThunk, updateUserThunk} from "../services/users-thunks.js";
 
 const usersReducer = createSlice({
     name: 'users',
@@ -33,6 +33,9 @@ const usersReducer = createSlice({
         [profileThunk.rejected]: (state, action) => {
             state.error = action.payload
             state.currentUser = null
+        },
+        [updateUserThunk.fulfilled]: (state, { payload } ) => {
+            state.currentUser = { ...state.currentUser, ...payload };
         },
     }
 })
