@@ -43,7 +43,8 @@ const Register = () => {
             }
         }
         const newUser = {username, password, role}
-        dispatch(registerThunk(newUser))
+        const res= registerThunk(newUser)
+        dispatch(res)
     }
     if(currentUser) {
         return (<Navigate to={'/profile'}/>)

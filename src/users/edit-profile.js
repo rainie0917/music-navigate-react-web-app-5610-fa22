@@ -48,9 +48,12 @@ const EditProfile = () => {
             email: email,
             password: password,
             firstName: firstName,
-            lastName: lastName
+            lastName: lastName,
+            uid: currentUser._id
         }
-        dispatch(updateUserThunk(currentUser._id, newProfile)); // TODO: add updateUserThunk
+        const res = updateUserThunk(newProfile)
+
+        dispatch(res); // TODO: add updateUserThunk
         // dispatch(updateProfile(newProfile)); // TODO: to be deleted
     };
     console.log(currentUser._id);
