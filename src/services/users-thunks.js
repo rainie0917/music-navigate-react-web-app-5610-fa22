@@ -23,7 +23,7 @@ export const loginThunk = createAsyncThunk(
 
 export const registerThunk = createAsyncThunk(
     'register',
-    async (user) => await register(user)
+    async (user) => await register(user),
 )
 
 export const findAllUsersThunk = createAsyncThunk(

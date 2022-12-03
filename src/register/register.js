@@ -87,6 +87,7 @@ const Register = () => {
             <div className="mb-2">
                 <label className="ms-2 fs-6 fw-bold me-2">Choose a role *</label>
                 <select value={role} onChange={(e) => setRole(e.target.value)}>
+                    <option value="" selected></option>
                     <option value="FAN" selected>FAN</option>
                     <option value="ARTIST">ARTIST</option>
                     <option value="ADMIN">ADMIN</option>
