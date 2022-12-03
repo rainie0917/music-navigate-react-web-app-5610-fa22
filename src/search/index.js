@@ -4,6 +4,7 @@ import "./index.css";
 import {useNavigate} from "react-router";
 import {useDispatch, useSelector} from "react-redux";
 import {runSearch} from "../reducers/search-reducer";
+import {searchTrackThunk} from "../services/search-thunks";
 
 const SearchComponent = () => {
 	const search = useSelector(state => state.search)
@@ -12,8 +13,8 @@ const SearchComponent = () => {
 	const dispatch = useDispatch();
 	
 	const searchSongs = () =>{
-		dispatch(runSearch(currentSearch))
-		// console.log(search)
+		// dispatch(runSearch(currentSearch))
+		dispatch(searchTrackThunk(currentSearch))
 		navigate(`/search/${currentSearch}`);
 	}
 	
