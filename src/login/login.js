@@ -14,6 +14,7 @@ const Login = () => {
         setError(null)
         const loginUser = {username, password}
         dispatch(loginThunk(loginUser))
+        console.log("Login success")
     }
     if(currentUser) {
         return (<Navigate to={'/profile'}/>)

@@ -1,5 +1,5 @@
 import axios from "axios";
-// const MUSIC_API_BASE = process.env.REACT_APP_MUSIC_API_BASE;
+const MUSIC_API_BASE = process.env.REACT_APP_MUSIC_API_BASE;
 const USER_API_URL = 'http://localhost:4000/users'
 const BASE_API_URL = 'http://localhost:4000'
 const api = axios.create({withCredentials: true});
