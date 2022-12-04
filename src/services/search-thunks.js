@@ -1,5 +1,6 @@
 import {createAsyncThunk} from "@reduxjs/toolkit"
 import * as service from "./search-service"
+import {searchSongInfo} from "./search-service";
 
 export const searchTrackThunk = createAsyncThunk(
 	'search',
@@ -10,6 +11,7 @@ export const searchTrackThunk = createAsyncThunk(
 		const tracks = data.results.trackmatches.track.filter(track => track.mbid != "")
 		for (const track of tracks) {
 			const songInfo = await service.searchSongInfo(track.mbid)
+			// const likes = await service.getLikes(track.mbid)
 			try{
 				track.realImg = songInfo.track.album.image[3]["#text"];
 			} catch (e) {
@@ -21,7 +23,16 @@ export const searchTrackThunk = createAsyncThunk(
 			}
 		}
 		data.results.trackmatches.track = tracks;
-		console.log(data)
+		// console.log(data)
+		return data
+	}
+)
+
+export const getDetailsThunk = createAsyncThunk(
+	'details',
+	async(mbid) =>{
+		const data = await service.searchSongInfo(mbid)
+		// console.log(data)
 		return data
 	}
 )
