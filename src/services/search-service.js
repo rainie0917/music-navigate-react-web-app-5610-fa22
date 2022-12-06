@@ -5,7 +5,6 @@ const BASE_API_URL = 'http://localhost:4000'
 const api = axios.create({withCredentials: true});
 
 export const searchTrack = async (title) =>{
-	// console.log("title: " + title)
 	const response = await axios.get(`${SEARCH_API_URL}/${title}`)
 	return response.data
 }

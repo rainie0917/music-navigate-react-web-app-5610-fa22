@@ -6,11 +6,12 @@ import {useNavigate} from "react-router";
 
 
 const DetailComponent = () => {
-	const detail = useSelector(state => state.search.detail)
-	console.log(detail)
+	// const detail = useSelector(state => state.search.currentTrack)
 	
 	const search = useSelector(state => state.search)
-	const [currentSearch, setCurrentSearch] = useState(search)
+	const detail = search.currentTrack
+	// console.log(detail)
+	// console.log(search)
 	
 	const navigate = useNavigate();
 
@@ -67,7 +68,7 @@ const DetailComponent = () => {
 	}
 	
 	const back = () => {
-		navigate(`/search/${currentSearch}`);
+		navigate(`/search/${search.title}`);
 	}
 	
 	return(
@@ -184,16 +185,7 @@ const DetailComponent = () => {
 						{getContent(detail.track.wiki)}
 					</span>
 				</li>
-				
-
-				
-
-				
-
 			</ul>
-
-			
-			
 
 		</>
 	)
