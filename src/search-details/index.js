@@ -59,6 +59,13 @@ const DetailComponent = () => {
 		return text
 	}
 	
+	const getPic = (url) => {
+		if (url === ""){
+			return "https://lastfm.freetls.fastly.net/i/u/300x300/2a96cbd8b46e442fc41c2b86b821562f.png"
+		}
+		return url
+	}
+	
 	const back = () => {
 		navigate(`/search/${currentSearch}`);
 	}
@@ -89,7 +96,7 @@ const DetailComponent = () => {
 				<br/><br/>
 				
 				<div className="wd-image-pos">
-					<img width={160} className="" src={`${detail.track.album.image[3]["#text"]}`}/>
+					<img width={160} className="border border-white border-3" src={`${getPic(detail.track.album.image[3]["#text"])}`}/>
 				</div>
 			</div>
 			<br/><br/><br/><br/>
