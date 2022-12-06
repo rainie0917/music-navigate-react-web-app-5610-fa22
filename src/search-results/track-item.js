@@ -3,15 +3,17 @@ import {useDispatch} from "react-redux";
 import {useNavigate} from "react-router";
 import {setMbid} from "../reducers/search-reducer";
 import {getDetailsThunk} from "../services/search-thunks";
+import axios from "axios";
+const api = axios.create({withCredentials: true});
 
 const TrackItem = ({track: track}) => {
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
 	
-	const getDetails = () => {
-		navigate(`/details/${track.mbid}`);
+	const getDetails = async () => {
 		// dispatch(setMbid(track.mbid))
-		dispatch(getDetailsThunk(track.mbid))
+		await dispatch(getDetailsThunk(track.mbid))
+		navigate(`/details/${track.mbid}`);
 	}
 	
 	

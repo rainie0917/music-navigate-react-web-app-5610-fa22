@@ -7,15 +7,9 @@ const searchSlice = createSlice({
 		title: "",
 		tracks: [],
 		mbid: "",
-		detail:[]
+		currentTrack:{},
 	},
 	
-	// reducers: {
-	// 	setMbid(state, action) {
-	// 		console.log(action.payload)
-	// 		state.mbid = action.payload
-	// 	},
-	// },
 	extraReducers: {
 		[searchTrackThunk.fulfilled]:
 			(state, action) => {
@@ -27,17 +21,10 @@ const searchSlice = createSlice({
 			},
 		[getDetailsThunk.fulfilled]:
 			(state, action) => {
-				state.detail = action.payload
+				state.currentTrack = action.payload
+				// console.log(state.detail)
 			},
 	},
-
-	// reducers: {
-	// 	runSearch(state, action){
-	// 		const currentSearch = action.payload
-	// 		state.title = currentSearch
-	// 		console.log(state.title)
-	// 	}
-	// },
 
 })
 

@@ -7,13 +7,12 @@ import {runSearch} from "../reducers/search-reducer";
 import {searchTrackThunk} from "../services/search-thunks";
 
 const SearchComponent = () => {
-	const search = useSelector(state => state.search)
+	const search = useSelector(state => state.search.title)
 	const [currentSearch, setCurrentSearch] = useState(search)
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
 	
 	const searchSongs = () =>{
-		// dispatch(runSearch(currentSearch))
 		dispatch(searchTrackThunk(currentSearch))
 		navigate(`/search/${currentSearch}`);
 	}
@@ -43,7 +42,6 @@ const SearchComponent = () => {
 				</div>
 				
 				{/*Search button*/}
-				{/*<div className=" wd-col-customize wd-col-md-customize col-lg-1 col-xl-1 col-xxl-1 btn rounded-pill btn-primary">*/}
 					<div className=" wd-col-customize btn rounded-pill btn-primary"
 					onClick={searchSongs}>
 					Search

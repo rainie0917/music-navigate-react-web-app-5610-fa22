@@ -6,11 +6,12 @@ import {useNavigate} from "react-router";
 
 
 const DetailComponent = () => {
-	const detail = useSelector(state => state.search.detail)
-	console.log(detail)
+	// const detail = useSelector(state => state.search.currentTrack)
 	
 	const search = useSelector(state => state.search)
-	const [currentSearch, setCurrentSearch] = useState(search)
+	const detail = search.currentTrack
+	// console.log(detail)
+	// console.log(search)
 	
 	const navigate = useNavigate();
 
@@ -59,8 +60,15 @@ const DetailComponent = () => {
 		return text
 	}
 	
+	const getPic = (url) => {
+		if (url === ""){
+			return "https://lastfm.freetls.fastly.net/i/u/300x300/2a96cbd8b46e442fc41c2b86b821562f.png"
+		}
+		return url
+	}
+	
 	const back = () => {
-		navigate(`/search/${currentSearch}`);
+		navigate(`/search/${search.title}`);
 	}
 	
 	return(
@@ -89,7 +97,7 @@ const DetailComponent = () => {
 				<br/><br/>
 				
 				<div className="wd-image-pos">
-					<img width={160} className="" src={`${detail.track.album.image[3]["#text"]}`}/>
+					<img width={160} className="border border-white border-3" src={`${getPic(detail.track.album.image[3]["#text"])}`}/>
 				</div>
 			</div>
 			<br/><br/><br/><br/>
@@ -177,16 +185,7 @@ const DetailComponent = () => {
 						{getContent(detail.track.wiki)}
 					</span>
 				</li>
-				
-
-				
-
-				
-
 			</ul>
-
-			
-			
 
 		</>
 	)
