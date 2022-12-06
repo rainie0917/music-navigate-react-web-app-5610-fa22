@@ -2,7 +2,7 @@ import {useState} from "react";
 import {Link} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {loginThunk} from "../services/users-thunks.js";
-import {Navigate, userNavigate} from "react-router";
+import {Navigate} from "react-router";
 
 const Login = () => {
     const {currentUser} = useSelector((state) => state.users)
@@ -14,7 +14,6 @@ const Login = () => {
         setError(null)
         const loginUser = {username, password}
         dispatch(loginThunk(loginUser))
-        console.log("Login success")
     }
     if(currentUser) {
         return (<Navigate to={'/profile'}/>)
