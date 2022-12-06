@@ -21,7 +21,7 @@ const searchSlice = createSlice({
 			(state, action) => {
 				const currentSearch = action.payload.title
 				state.title = currentSearch
-				console.log(currentSearch)
+				// console.log(currentSearch)
 				// state.search = currentSearch
 				state.tracks = action.payload.results.trackmatches.track
 			},
