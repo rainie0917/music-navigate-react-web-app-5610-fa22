@@ -20,7 +20,7 @@ const TrackItem = ({track: track}) => {
 			<div className="row">
 				<div className="col-2">
 					<img width={40} className="rounded-3" src={`${track.realImg}`}/>
-					<span className="ps-4">
+					<span className="ps-3">
 						<i className="fa-regular fa-heart  fs-6 "></i>
 					</span>
 				</div>
