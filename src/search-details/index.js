@@ -1,15 +1,23 @@
-import React from "react";
+import React, {useState} from "react";
 import '@fortawesome/fontawesome-free/css/all.css';
 import {useSelector} from "react-redux";
 import "./index.css"
+import {useNavigate} from "react-router";
 
 
 const DetailComponent = () => {
 	const detail = useSelector(state => state.search.detail)
 	console.log(detail)
+	
+	const search = useSelector(state => state.search)
+	const [currentSearch, setCurrentSearch] = useState(search)
+	
+	const navigate = useNavigate();
 
 	const getTags = (toptag) => {
-		
+		if(toptag === undefined || toptag.length === 0){
+			return "n/a"
+		}
 		let tags = ""
 		for(var i in toptag){
 			// eslint-disable-next-line no-restricted-globals
@@ -20,32 +28,68 @@ const DetailComponent = () => {
 		return tags
 	}
 	
-	const getSummaryContent = (text) => {
-		let content = text.split("<a")
+	const getSummary = (wiki) => {
+		if(wiki === undefined){
+			return "n/a"
+		}
+		let summary = wiki.summary.split("<a")
+		return summary[0]
+	}
+	
+	const getContent = (wiki) => {
+		if(wiki === undefined){
+			return "n/a"
+		}
+		let content = wiki.content.split("<a")
 		return content[0]
+	}
+	
+	const getPublished = (wiki) => {
+		if(wiki === undefined){
+			return "n/a"
+		}
+		let published = wiki.published
+		return published
+	}
+	
+	const removeUndefined = (text) => {
+		if(text === undefined){
+			return "n/a"
+		}
+		return text
+	}
+	
+	const back = () => {
+		navigate(`/search/${currentSearch}`);
 	}
 	
 	return(
 		<>
-			<div className="bg-dark bg-opacity-50 wd-pos-relative">
+			<div className="bg-primary bg-opacity-50 wd-pos-relative">
+				<div className="btn rounded-pill btn-primary fs-6 ms-2 mt-2"
+					onClick={back}>
+					Back to result page
+				</div>
+				
 				<br/><br/>
+
 				<div className="ps-5">
 					<h2>
-						{detail.track.name}
+						{removeUndefined(detail.track.name)}
 					</h2>
 					
 					<h5 className="">
-						By {detail.track.artist.name}
+						By {removeUndefined(detail.track.artist.name)}
 					</h5>
 
 					<h5 className="">
-						From 《{detail.track.album.title}》
+						From 《{removeUndefined(detail.track.album.title)}》
 					</h5>
 				</div>
 				<br/><br/>
 				
 				<div className="wd-image-pos">
-					<img width={140} className="" src={`${detail.track.album.image[3]["#text"]}`}/>
+					<img width={160} className="" src={`${detail.track.album.image[3]["#text"]}`}/>
 				</div>
 			</div>
 			<br/><br/><br/><br/>
@@ -56,7 +100,7 @@ const DetailComponent = () => {
 						mbid
 					</span>
 					<span className="float-end">
-						{detail.track.mbid}
+						{removeUndefined(detail.track.mbid)}
 					</span>
 				</li>
 				
@@ -65,7 +109,7 @@ const DetailComponent = () => {
 						Name
 					</span>
 					<span className="float-end">
-						{detail.track.name}
+						{removeUndefined(detail.track.name)}
 					</span>
 				</li>
 				
@@ -74,7 +118,7 @@ const DetailComponent = () => {
 						Artist
 					</span>
 					<span className="float-end">
-						{detail.track.artist.name}
+						{removeUndefined(detail.track.artist.name)}
 					</span>
 				</li>
 				
@@ -83,7 +127,7 @@ const DetailComponent = () => {
 						Album
 					</span>
 					<span className="float-end">
-						{detail.track.album.title}
+						{removeUndefined(detail.track.album.title)}
 					</span>
 				</li>
 				
@@ -92,7 +136,8 @@ const DetailComponent = () => {
 						Published
 					</span>
 					<span className="float-end">
-						{detail.track.wiki.published}
+						{getPublished(detail.track.wiki)}
+						{/*{removeUndefined(detail.track.wiki.published)}*/}
 					</span>
 				</li>
 				
@@ -101,7 +146,7 @@ const DetailComponent = () => {
 						Playcount
 					</span>
 					<span className="float-end">
-						{detail.track.playcount}
+						{removeUndefined(detail.track.playcount)}
 					</span>
 				</li>
 				
@@ -120,7 +165,7 @@ const DetailComponent = () => {
 						Summary
 					</span>
 					<span className="float-end">
-						{getSummaryContent(detail.track.wiki.summary)}
+						{getSummary(detail.track.wiki)}
 					</span>
 				</li>
 				
@@ -129,7 +174,7 @@ const DetailComponent = () => {
 						Content
 					</span>
 					<span className="float-end">
-						{getSummaryContent(detail.track.wiki.content)}
+						{getContent(detail.track.wiki)}
 					</span>
 				</li>
 				
