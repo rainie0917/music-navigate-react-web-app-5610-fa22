@@ -2,9 +2,6 @@ import {useDispatch, useSelector} from "react-redux";
 import {Link} from "react-router-dom";
 import {useState} from "react";
 import React from "react";
-// TODO: need to import user thunk and user reducer
-// import {updateProfileThunk} from "./profile-service/profile-thunks";
-// import {updateProfile} from "../profile/profile-reducer";
 import {updateUserThunk} from "../services/users-thunks";
 
 
@@ -15,8 +12,6 @@ const EditProfile = () => {
     const [password, setPasswordString] = useState(currentUser.password);
     const [firstName, setFirstName] = useState(currentUser.firstName);
     const [lastName, setLastName] = useState(currentUser.lastName);
-
-    // const [dateInEdit, setDateInEdit] = useState(false);
 
     const changeName = (event) => {
         setName(event.target.value);
@@ -40,7 +35,6 @@ const EditProfile = () => {
         setLastName(event.target.value);
     };
 
-
     const dispatch = useDispatch();
     const saveHandler = () => {
         const newProfile = {
@@ -52,9 +46,7 @@ const EditProfile = () => {
             uid: currentUser._id
         }
         const res = updateUserThunk(newProfile)
-
-        dispatch(res); // TODO: add updateUserThunk
-        // dispatch(updateProfile(newProfile)); // TODO: to be deleted
+        dispatch(res);
     };
     console.log(currentUser._id);
     return (

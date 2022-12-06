@@ -17,7 +17,8 @@ import {Link} from "react-router-dom";
 import SearchComponent from "./search";
 import ResultComponent from "./result";
 import searchReducer from "./reducers/search-reducer";
-import EditProfile from "./users/edit-profile";
+import EditProfile from "./profile/edit-profile";
+import ProfileOther from "./profile/profile-other";
 
 const store = configureStore({
     reducer: {
@@ -65,6 +66,7 @@ function App() {
                                             <EditProfile/>
                                         </ProtectedRoute>
                                     }/>
+                                    <Route path="/profile/:uid" element={<ProfileOther/>}></Route>
                                 </Routes>
                             </div>
                         </div>

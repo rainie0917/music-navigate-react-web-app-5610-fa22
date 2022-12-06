@@ -1,6 +1,8 @@
 import {useDispatch, useSelector} from "react-redux";
 import {logoutThunk} from "../services/users-thunks";
 import {Link} from "react-router-dom";
+import SameRoleUser from "../profile/display-same-role-user";
+import UserLikedSong from "../profile/user-liked-song";
 
 const Profile = () => {
     const {currentUser} = useSelector((state) => state.users)
@@ -23,8 +25,11 @@ const Profile = () => {
                     <li className="list-group-item w-75"><div className="fw-bold mb-0 text-secondary">Email:<span className="text-dark ps-2">{currentUser.email}</span></div></li>
                     <li className="list-group-item w-75"><div className="fw-bold mb-0 text-secondary">Last Name:<span className="text-dark ps-2">{currentUser.lastName}</span></div></li>
                     <li className="list-group-item w-75"><div className="fw-bold mb-0 text-secondary">First Name:<span className="text-dark ps-2">{currentUser.firstName}</span></div></li>
+                    <li className="list-group-item w-75"><div className="fw-bold mb-0 text-secondary">First Name:<span className="text-dark ps-2">{currentUser.role}</span></div></li>
                 </ul>
             </div>
+            <SameRoleUser/>
+            <UserLikedSong/>
         </>
     )
 }
