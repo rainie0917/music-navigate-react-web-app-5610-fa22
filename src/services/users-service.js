@@ -1,8 +1,10 @@
 import axios from "axios";
+//testing
 const MUSIC_API_BASE = process.env.REACT_APP_MUSIC_API_BASE;
 const USER_API_URL = `${MUSIC_API_BASE}/users`
 const BASE_API_URL = `${MUSIC_API_BASE}`
 const api = axios.create({withCredentials: true});
+
 
 export const findUserById = async (uid) => {
     const response = await api.get(`${USER_API_URL}/${uid}`)
