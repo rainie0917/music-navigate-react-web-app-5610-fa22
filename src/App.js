@@ -17,11 +17,14 @@ import {Link} from "react-router-dom";
 import SearchComponent from "./search";
 import ResultComponent from "./result";
 import searchReducer from "./reducers/search-reducer";
+import songsReducer from "./reducers/songs-reducer";
 
 const store = configureStore({
     reducer: {
         users: usersReducer,
         search: searchReducer,
+        // songs: songsReducer,
+        songsData:songsReducer,
     }
 })
 

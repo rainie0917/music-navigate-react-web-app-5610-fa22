@@ -1,6 +1,8 @@
 import React from "react";
-import albumsArray from '../albums/albums.json';
-import AlbumList from "../albums/albumList.js";
+// import albumsArray from '../songs/songs.json';
+import SongsList from "../songs/songList.js";
+// import { configureStore }
+//   from '@reduxjs/toolkit';
 
 const HomeComponent = () => {
   return (
@@ -14,7 +16,7 @@ const HomeComponent = () => {
         {/*      <AlbumList*/}
         {/*          key={album.album_id} album={album}/>)*/}
         {/*}*/}
-        <AlbumList/>
+          <SongsList/>
 
       </ul>
   );
