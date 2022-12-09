@@ -1,11 +1,6 @@
 import {useDispatch, useSelector} from "react-redux";
 import {logoutThunk} from "../services/users-thunks";
 
-
-
-import {useDispatch, useSelector} from "react-redux";
-import {logoutThunk} from "../services/users-thunks";
-
 const Profile = () => {
   const {currentUser} = useSelector((state) => state.users)
   const dispatch = useDispatch()
