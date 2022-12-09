@@ -1,0 +1,8 @@
+.wd-pos-relative {
+  position: relative; }
+
+.wd-image-pos {
+  position: absolute;
+  bottom: -35%;
+  right: 5%
+}
