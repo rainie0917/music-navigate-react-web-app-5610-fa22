@@ -4,75 +4,72 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import {Routes, Route} from "react-router";
 import {BrowserRouter} from "react-router-dom";
-// import Navigation from "./navigation";
-import NavigationSidebar
-    from "./navigation-sidebar";
-import HomeComponent from "./home";
 import usersReducer from "./reducers/users-reducer";
 import Register from "./register/register";
 import Login from "./login/login";
 import Profile from "./users/profile";
+import Users from "./users/index"
+import HomeComponent from "./home/index"
+import NavigationSidebar from "./navigation-sidebar";
 import ProtectedRoute from "./users/protected-route"
 import CurrentUser from "./users/current-user";
 import {Link} from "react-router-dom";
+import SearchComponent from "./search";
+import ResultComponent from "./result";
+import searchReducer from "./reducers/search-reducer";
+import songsReducer from "./reducers/songs-reducer";
 
 const store = configureStore({
     reducer: {
-        users: usersReducer
+        users: usersReducer,
+        search: searchReducer,
+        // songs: songsReducer,
+        songsData:songsReducer,
     }
 })
 
 function App() {
-    return (
-        <div className="container mt-2 mb-4">
-            <Provider store={store}>
-                <CurrentUser>
-                    <BrowserRouter>
+  return (
+      <div className="container mt-4 mb-4">
+        <Provider store={store}>
+          <CurrentUser>
+            <BrowserRouter>
+              <div className="row mt-2">
+                <div className="float-md-end">
+                  <Link className="float-md-end" to="/Login">Login</Link>
+                  <Link className="me-3 float-md-end" to="/register">Register</Link>
+                </div>
+                <div className="col-xxl-2 col-xl-2 col-lg-2 col-md-2 col-sm-3">
+                  <NavigationSidebar active="home"/>
+                </div>
 
-                        <div className="float-md-end">
-                            <button type="button"
-                                    className="btn btn-secondary">
-                                <Link to="/Login">Login</Link>
-                            </button>
-
-
-                            <button type="button"
-                                    className="btn btn-light">
-                                <Link to="/register">Register</Link>
-                            </button>
-                        </div>
-
-                        <br/>
-
-                        <div className="row mt-2">
-
-                            <div className="col-xxl-2 col-xl-2 col-lg-2 col-md-2 col-sm-3">
-                                <NavigationSidebar active="home"/>
-
-                            </div>
-
-                            <div className="col-xxl-10 col-xl-10 col-lg-10 col-md-9 col-sm-9"
-                                 style={{"position": "relative"}}>
-                                <Routes>
-                                    <Route path="home"    element={<HomeComponent/>}/>
-                                    {/*<Route path="/register" element={<Register/>}/>*/}
-                                    {/*<Route path="/login" element={<Login/>}/>*/}
-                                    <Route path="/profile" element={
-                                        <ProtectedRoute>
-                                            <Profile/>}
-                                        </ProtectedRoute>
-                                    }/>
-                                 </Routes>
-                            </div>
-
-                        </div>
-
-
-                    </BrowserRouter>
-                </CurrentUser>
-            </Provider>
-        </div>
-    );
+                <div className="col-xxl-10 col-xl-10 col-lg-10 col-md-9 col-sm-9"
+                     style={{"position": "relative"}}>
+                  <Routes>
+                    <Route index element={<HomeComponent/>}/>
+                    <Route path="/users" element={
+                      <ProtectedRoute>
+                        <Users/>
+                      </ProtectedRoute>
+                    }/>
+                    <Route path="/home" element={<HomeComponent/>}/>
+                    <Route path="/register" element={<Register/>}/>
+                    <Route path="/login" element={<Login/>}/>
+                    <Route path="/profile" element={
+                      <ProtectedRoute>
+                        <Profile/>}
+                      </ProtectedRoute>
+                    }/>
+                    <Route path='/search' element={<SearchComponent/>}/>
+                    <Route path='/search/*' element={<ResultComponent/>}/>
+                  </Routes>
+                </div>
+              </div>
+            </BrowserRouter>
+          </CurrentUser>
+        </Provider>
+      </div>
+  );
 }
 
 export default App;

@@ -9,6 +9,9 @@ const Register = () => {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [role, setRole] = useState('')
+  const [firstName, setFirstName] = useState('')
+  const [lastName, setLastName] = useState('')
+  const [email, setEmail] = useState('')
   const [adminInvitationCode, setAdminInvitationCode] = useState('')
   const [validatePassword, setValidatePassword] = useState('')
   const [error, setError] = useState(null)
@@ -16,7 +19,9 @@ const Register = () => {
   const admin = "ADMIN"
   const invitationCode = "musicappcs5610"
   const handleRegisterBtn = () => {
-    if (username.length === 0 || password.length === 0 || validatePassword.length === 0) {
+    if (username.length === 0 || firstName.length === 0 ||
+        lastName.length === 0 || email.length === 0 ||
+        password.length === 0 || validatePassword.length === 0) {
       setError('Required field cannot be empty')
       return
     }
@@ -70,6 +75,24 @@ const Register = () => {
                type="text"
                placeholder="Username"
                onChange={(e) => setUsername(e.target.value)}/>
+        <div className="ms-2 fs-6 fw-bold">Firstname *</div>
+        <input className="form-control mb-2"
+               value={firstName}
+               type="text"
+               placeholder="FirstName"
+               onChange={(e) => setFirstName(e.target.value)}/>
+        <div className="ms-2 fs-6 fw-bold">Lastname *</div>
+        <input className="form-control mb-2"
+               value={lastName}
+               type="text"
+               placeholder="Lastname"
+               onChange={(e) => setLastName(e.target.value)}/>
+        <div className="ms-2 fs-6 fw-bold">Email *</div>
+        <input className="form-control mb-2"
+               value={email}
+               type="text"
+               placeholder="Email"
+               onChange={(e) => setEmail(e.target.value)}/>
         <div className="ms-2 fs-6 fw-bold">Enter your password *</div>
         <input
             className="form-control mb-2"
@@ -87,6 +110,7 @@ const Register = () => {
         <div className="mb-2">
           <label className="ms-2 fs-6 fw-bold me-2">Choose a role *</label>
           <select value={role} onChange={(e) => setRole(e.target.value)}>
+            <option value="" selected></option>
             <option value="FAN" selected>FAN</option>
             <option value="ARTIST">ARTIST</option>
             <option value="ADMIN">ADMIN</option>

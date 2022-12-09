@@ -12,26 +12,16 @@ const NavigationSidebar = () => {
         {/*<h2>Spotify</h2>*/}
         <Link to="/home" className={`list-group-item ${active === 'home'?'active':''}`}>
           <i className="bi bi-house-door-fill p-1"></i>
-          Home
+          <label className="text-muted">Home</label>
         </Link>
-        <Link to="/search/search" className={`list-group-item ${active === 'search'?'active':''}`}>
+        <Link to="/search" className={`list-group-item ${active === 'search'?'active':''}`}>
           <i className="bi bi-search p-1"></i>
-          Search
+          <label className="text-muted">Search</label>
         </Link>
-        <Link to="/profile/profile" className={`list-group-item ${active === 'profile'?'active':''}`}>
+        <Link to="/profile" className={`list-group-item ${active === 'profile'?'active':''}`}>
           <i className="bi bi-person-circle p-1"></i>
-          Profile
+          <label className="text-muted">Profile</label>
         </Link>
-        <Link to="/" className={`list-group-item ${active === 'notification'?'active':''}`} >
-          Your Library
-        </Link>
-        <Link to="/" className={`list-group-item ${active === 'message'?'active':''}`} >
-          Liked Songs
-        </Link>
-        <Link to="/" className={`list-group-item ${active === 'bookmark'?'active':''}`} >
-          Created Playlist
-        </Link>
-
       </div>
   );
 };
