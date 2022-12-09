@@ -7,7 +7,7 @@ import {getDetailsThunk} from "../services/search-thunks";
 
 
 
-const SameRoleUser = () => {
+const DisplayUserToAnonynous = () => {
     const {users} = useSelector((state) => state.users)
     const {currentUser} = useSelector((state) => state.users)
     const dispatch = useDispatch()
@@ -15,17 +15,12 @@ const SameRoleUser = () => {
         dispatch(findAllUsersThunk())
     }, [])
 
-    const findSameRoleUser = (users, currentUser) => {
+    const findUser = (users) => {
         let roles = [];
-        if (currentUser) {
-            console.log('###users:',users)
-            for (let i = 0; i < users.length; i++) {
-                if (users[i].role == currentUser.role && users[i]._id !== currentUser._id) {
-                    roles.push(users[i])
-                }
-            }
-            return roles
+        for (let i = 0; i < users.length; i++) {
+            roles.push(users[i])
         }
+        return roles
     }
 
     const navigate = useNavigate();
@@ -39,7 +34,7 @@ const SameRoleUser = () => {
             <h2 className="d-flex justify-content-center text-primary fw-bold mt-3 mb-2">Users You Might Interested</h2>
             <ul className="list-group">
                 {
-                    (Array.from(findSameRoleUser(users, currentUser))).map((user) =>
+                    (Array.from(findUser(users))).map((user) =>
                         <li className="list-group-item"
                             key={user._id}>
                             <span onClick={() => getProfiles(user._id)}>{user.username}</span>
@@ -52,4 +47,4 @@ const SameRoleUser = () => {
     )
 }
 
-export default SameRoleUser;
+export default DisplayUserToAnonynous;

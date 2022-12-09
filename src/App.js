@@ -15,8 +15,9 @@ import ProtectedRoute from "./users/protected-route"
 import CurrentUser from "./users/current-user";
 import {Link} from "react-router-dom";
 import SearchComponent from "./search";
-import ResultComponent from "./result";
+import ResultComponent from "./search-results";
 import searchReducer from "./reducers/search-reducer";
+import DetailComponent from "./search-details";
 import EditProfile from "./profile/edit-profile";
 import ProfileOther from "./profile/profile-other";
 
@@ -43,7 +44,7 @@ function App() {
                             </div>
 
                             <div className="col-xxl-10 col-xl-10 col-lg-10 col-md-9 col-sm-9"
-                                style={{"position": "relative"}}>
+                                 style={{"position": "relative"}}>
                                 <Routes>
                                     <Route index element={<HomeComponent/>}/>
                                     <Route path="/users" element={
@@ -61,6 +62,7 @@ function App() {
                                     }/>
                                     <Route path='/search' element={<SearchComponent/>}/>
                                     <Route path='/search/*' element={<ResultComponent/>}/>
+                                    <Route path='/details/*' element={<DetailComponent/>}/>
                                     <Route path="/edit-profile" element={
                                         <ProtectedRoute>
                                             <EditProfile/>

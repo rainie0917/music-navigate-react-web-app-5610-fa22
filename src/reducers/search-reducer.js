@@ -1,19 +1,32 @@
 import {createSlice} from "@reduxjs/toolkit";
+import {getDetailsThunk, searchTrackThunk} from "../services/search-thunks";
 
 const searchSlice = createSlice({
 	name: "search",
 	initialState: {
-		search: ""
+		title: "",
+		tracks: [],
+		mbid: "",
+		currentTrack:{},
 	},
-	reducers: {
-		runSearch(state, action){
-			const currentSearch = action.payload
-			state.search = currentSearch
-			// console.log(state.search)
-		}
+	
+	extraReducers: {
+		[searchTrackThunk.fulfilled]:
+			(state, action) => {
+				const currentSearch = action.payload.title
+				state.title = currentSearch
+				// console.log(currentSearch)
+				// state.search = currentSearch
+				state.tracks = action.payload.results.trackmatches.track
+			},
+		[getDetailsThunk.fulfilled]:
+			(state, action) => {
+				state.currentTrack = action.payload
+				// console.log(state.detail)
+			},
 	},
 
 })
 
 export default searchSlice.reducer;
-export const{runSearch} = searchSlice.actions
+export const{setMbid} = searchSlice.actions
