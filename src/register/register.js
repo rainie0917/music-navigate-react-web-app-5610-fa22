@@ -47,7 +47,7 @@ const Register = () => {
                 return
             }
         }
-        const newUser = {username, password, role}
+        const newUser = {username, firstName, lastName, email, password, role}
         dispatch(registerThunk(newUser))
     }
     if(currentUser) {
