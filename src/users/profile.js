@@ -6,7 +6,6 @@ import UserLikedSong from "../profile/user-liked-song";
 import DisplayUserToAnonynous from "../profile/display-users-to-anonynous";
 
 const Profile = () => {
-<<<<<<< HEAD
     const {currentUser} = useSelector((state) => state.users)
     const dispatch = useDispatch()
     const handleLogout = () => {
