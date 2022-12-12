@@ -20,29 +20,32 @@ import searchReducer from "./reducers/search-reducer";
 import DetailComponent from "./search-details";
 import EditProfile from "./profile/edit-profile";
 import ProfileOther from "./profile/profile-other";
+import songsReducer from "./reducers/songs-reducer";
+
 
 const store = configureStore({
     reducer: {
         users: usersReducer,
         search: searchReducer,
+        // songs: songsReducer,
+        songsData:songsReducer,
     }
 })
 
 function App() {
-    return (
-        <div className="container mt-4 mb-4">
-            <Provider store={store}>
-                <CurrentUser>
-                    <BrowserRouter>
-                        <div className="row mt-2">
-                            <div className="float-md-end">
-                                <Link className="float-md-end" to="/Login">Login</Link>
-                                <Link className="me-3 float-md-end" to="/register">Register</Link>
-                            </div>
-                            <div className="col-xxl-2 col-xl-2 col-lg-2 col-md-2 col-sm-3">
-                                <NavigationSidebar active="home"/>
-                            </div>
-
+  return (
+      <div className="container mt-4 mb-4">
+        <Provider store={store}>
+          <CurrentUser>
+            <BrowserRouter>
+              <div className="row mt-2">
+                <div className="float-md-end">
+                  <Link className="float-md-end" to="/Login">Login</Link>
+                  <Link className="me-3 float-md-end" to="/register">Register</Link>
+                </div>
+                <div className="col-xxl-2 col-xl-2 col-lg-2 col-md-2 col-sm-3">
+                  <NavigationSidebar active="home"/>
+                </div>
                             <div className="col-xxl-10 col-xl-10 col-lg-10 col-md-9 col-sm-9"
                                  style={{"position": "relative"}}>
                                 <Routes>
@@ -77,6 +80,7 @@ function App() {
             </Provider>
         </div>
     );
+
 }
 
 export default App;
