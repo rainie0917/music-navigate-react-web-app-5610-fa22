@@ -11,5 +11,5 @@ export const updateSongThunk =
     createAsyncThunk(
         'songs/updateSong',
         async (song) =>
-            await service.updateSong(song)
+         await service.updateSong(song)
     )

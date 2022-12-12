@@ -1,11 +1,13 @@
 import axios from "axios";
-// const MUSIC_API_BASE = process.env.REACT_APP_MUSIC_API_BASE;
+const MUSIC_API_BASE = process.env.REACT_APP_MUSIC_API_BASE;
 const SONG_API_URL = 'http://localhost:4000/api/songs'
+const DETAILS_API_URL = 'http://localhost:4000/details'
 // const BASE_API_URL = 'http://localhost:4000'
 // const api = axios.create({withCredentials: true});
 
 export const findSongs = async () => {
   const response = await axios.get(SONG_API_URL);
+  // const response = await axios.get(DETAILS_API_URL);
   const songs = response.data;
   return songs;
 }
@@ -13,7 +15,8 @@ export const findSongs = async () => {
 export const updateSong = async (song) => {
   const response = await axios
   .put(`${SONG_API_URL}/${song._id}`, song);
-  return response.data;
+  // return response.data;
+  return song;
 }
 
 

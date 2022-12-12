@@ -13,8 +13,8 @@ const SongStats = ({ song }) => {
               <button
                   onClick={() => dispatch(updateSongThunk({
                     ...song,
-                    liked: false,
-                    likes: song.likes - 1
+                    likes: song.likes - 1,
+                    liked: false
                   }))}
                   className='btn btn-sm'>
                 <i className='fa-solid fa-heart  fs-6 text-danger' style={{color: 'red'}}/> {song.likes}
@@ -25,8 +25,8 @@ const SongStats = ({ song }) => {
               <button
                   onClick={() => dispatch(updateSongThunk({
                     ...song,
-                    liked: true,
-                    likes: typeof song.likes === 'undefined' ? 1: song.likes + 1
+                    likes: typeof song.likes === 'undefined' ? 1: song.likes + 1,
+                    liked: true
                   }))}
                   className='btn btn-sm'>
                 <i className='fa-regular fa-heart'/> {song.likes}

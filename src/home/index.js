@@ -9,7 +9,7 @@ const HomeComponent = () => {
   return (
 
       <ul className="list-group">
-        <div className= "p-0">
+        <div className= "p-0 ms-3">
           <h2>Listen Now</h2>
         </div>
         {/*{*/}
