@@ -15,6 +15,9 @@ const Login = () => {
         const loginUser = {username, password}
         dispatch(loginThunk(loginUser))
     }
+    if(currentUser && currentUser.role === "ADMIN") {
+        return (<Navigate to={'/users'}/>)
+    }
     if(currentUser) {
         return (<Navigate to={'/profile'}/>)
     }

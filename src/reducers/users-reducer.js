@@ -5,7 +5,9 @@ import {
     loginThunk,
     registerThunk,
     updateUserThunk,
-    findAllUsersThunk, findUserByIdThunk
+    deleteUserThunk,
+    findAllUsersThunk,
+    findUserByIdThunk
 } from "../services/users-thunks.js";
 
 const usersReducer = createSlice({
@@ -49,6 +51,10 @@ const usersReducer = createSlice({
         },
         [findUserByIdThunk.fulfilled]: (state, {payload}) => {
             state.otherUser = payload;
+        },
+        [deleteUserThunk.fulfilled] : (state, { payload }) => {
+            state.loading = false
+            state.users = state.users.filter(u => u._id !== payload)
         },
     }
 })
