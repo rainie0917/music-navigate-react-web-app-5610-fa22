@@ -17,17 +17,6 @@ const SongsList = () => {
   }, [])
 
   return (
-      // <>
-      //   {songs.map((song)=> (
-      //       <SongItem
-      //       song={song}
-      //       // key={song._id}
-      //       // song={song}
-      //       />
-      //   ))}
-      // </>
-
-
       <ul className="list-group">
         {
             loading &&

@@ -15,17 +15,16 @@ const SongItem =  ({song}) => {
   // console.log(detail)
 
   const getDetails = async (mbid) => {
-    console.log(mbid)
+    // console.log(mbid)
     await dispatch(getDetailsThunk(mbid))
     navigate(`/details/${mbid}`);
   }
 
-  // console.log(song)
   return (
       <>
         <div className="rounded row m-0 ps-2 pe-2 pt-2 pb-2">
           <div className="col-2 justify-content-center">
-            <div><img alt="icon" className=" wd-avatar" src={song.image} height="100px"/></div>
+            <div><img alt="icon" className=" wd-avatar" src={song.realImg} height="100px"/></div>
           </div>
 
           <div className="col-9 row">
@@ -39,13 +38,13 @@ const SongItem =  ({song}) => {
                 </span>
 
               </div>
+              {/*<div className="text-muted">{getDetails(song.album)}</div>*/}
               <div className="text-muted">{song.album}</div>
               {/*<div>{song.content}</div>*/}
             </div>
 
             <div className="d-flex">
                <SongStats song={song} />
-              {/*OnClick={()=> getDetails(mbid)}*/}
               <button onClick={() => getDetails(song.mbid)} className="btn btn-primary m-1">Detail</button>
               <button className="btn btn-primary m-1">Play</button>
 
