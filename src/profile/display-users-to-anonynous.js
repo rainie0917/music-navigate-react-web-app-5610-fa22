@@ -5,8 +5,6 @@ import {findAllUsersThunk, findUserByIdThunk} from "../services/users-thunks";
 import {useNavigate} from "react-router";
 import {getDetailsThunk} from "../services/search-thunks";
 
-
-
 const DisplayUserToAnonynous = () => {
     const {users} = useSelector((state) => state.users)
     const {currentUser} = useSelector((state) => state.users)

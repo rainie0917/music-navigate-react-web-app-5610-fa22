@@ -14,6 +14,7 @@ const Register = () => {
     const [email, setEmail] = useState('')
     const [adminInvitationCode, setAdminInvitationCode] = useState('')
     const [validatePassword, setValidatePassword] = useState('')
+    const [likedSong, setLikedSong] = useState('')
     const [error, setError] = useState(null)
     const dispatch = useDispatch()
     const admin = "ADMIN"
@@ -47,7 +48,7 @@ const Register = () => {
                 return
             }
         }
-        const newUser = {username, firstName, lastName, email, password, role}
+        const newUser = {username, firstName, lastName, email, password, role, likedSong}
         dispatch(registerThunk(newUser))
     }
     if(currentUser) {
