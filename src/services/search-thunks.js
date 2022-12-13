@@ -32,7 +32,7 @@ export const getDetailsThunk = createAsyncThunk(
 	'details',
 	async(mbid) =>{
 		const data = await service.searchSongInfo(mbid)
-		// console.log(data)
+		console.log(data)
 		return data
 	}
 )
