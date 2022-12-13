@@ -1,5 +1,10 @@
 import {createSlice} from "@reduxjs/toolkit";
-import {getDetailsThunk, searchTrackThunk} from "../services/search-thunks";
+import {
+	createSongThunk,
+	getDetailsThunk,
+	searchSongThunk,
+	updateSongThunk
+} from "../services/search-thunks";
 
 const searchSlice = createSlice({
 	name: "search",
@@ -11,19 +16,33 @@ const searchSlice = createSlice({
 	},
 	
 	extraReducers: {
-		[searchTrackThunk.fulfilled]:
+		[searchSongThunk.fulfilled]:
 			(state, action) => {
 				const currentSearch = action.payload.title
 				state.title = currentSearch
-				// console.log(currentSearch)
-				// state.search = currentSearch
+
 				state.tracks = action.payload.results.trackmatches.track
 			},
 		[getDetailsThunk.fulfilled]:
 			(state, action) => {
 				state.currentTrack = action.payload
-				// console.log(state.detail)
 			},
+		[createSongThunk.fulfilled]:
+			(state, action) => {
+				const trackIdx = state.tracks.findIndex((t) => t.mbid === action.payload.mbid)
+				state.tracks[trackIdx] = {
+					...state.tracks[trackIdx],
+					...action.payload
+				}
+			},
+		[updateSongThunk.fulfilled]:
+			(state, action) => {
+				const trackIdx = state.tracks.findIndex((t) => t.mbid === action.payload.mbid)
+				state.tracks[trackIdx] = {
+					...state.tracks[trackIdx],
+					...action.payload
+				}
+			}
 	},
 
 })

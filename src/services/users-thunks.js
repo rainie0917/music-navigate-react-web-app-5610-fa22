@@ -45,3 +45,7 @@ export const deleteUserThunk = createAsyncThunk(
     'deleteUser',
     async (uid) => await deleteUser(uid)
 )
+// 	'updateUser',
+// 	async (userUpdate) => await updateUser(userUpdate)
+// >>>>>>> commit before pulling
+// )

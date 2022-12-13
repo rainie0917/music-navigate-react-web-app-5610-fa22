@@ -3,6 +3,10 @@ import '@fortawesome/fontawesome-free/css/all.css';
 import {useSelector} from "react-redux";
 import "./index.css"
 import {useNavigate} from "react-router";
+import * as service from "../services/search-service";
+import {createSongThunk, updateSongThunk} from "../services/search-thunks";
+import {updateUserThunk} from "../services/users-thunks";
+import {UsersItem} from "./users-item";
 
 
 const DetailComponent = () => {
@@ -10,8 +14,8 @@ const DetailComponent = () => {
 	
 	const search = useSelector(state => state.search)
 	const detail = search.currentTrack
-	// console.log(detail)
-	// console.log(search)
+	const userNames = detail.userNames
+
 	
 	const navigate = useNavigate();
 
@@ -186,7 +190,21 @@ const DetailComponent = () => {
 					</span>
 				</li>
 			</ul>
-
+			
+			<br/><br/>
+			
+			<h5>
+				Users who liked this song
+			</h5>
+			<ul className="list-group">
+				{
+					userNames.map(name =>
+						<UsersItem key={name} userName={name}>
+						</UsersItem>
+					)
+				}
+			
+			</ul>
 		</>
 	)
 }
