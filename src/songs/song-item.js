@@ -32,7 +32,6 @@ const SongItem =  ({song}) => {
 
             <div className="col-7 mb-2">
               <div className="fw-bold">
-                {/*{song.musicName}*/}
                 {song.name}
 
                 <span className="px-2 fs-6 fw-normal">
