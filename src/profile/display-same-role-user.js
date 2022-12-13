@@ -18,13 +18,12 @@ const SameRoleUser = () => {
     const findSameRoleUser = (users, currentUser) => {
         let roles = [];
         if (currentUser) {
-            console.log('###users:',users)
             for (let i = 0; i < users.length; i++) {
                 if (users[i].role == currentUser.role && users[i]._id !== currentUser._id) {
                     roles.push(users[i])
                 }
             }
-            return roles
+            return roles.splice(0,5)
         }
     }
 

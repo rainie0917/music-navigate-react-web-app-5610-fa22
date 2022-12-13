@@ -17,7 +17,7 @@ const DisplayUserToAnonynous = () => {
 
     const findUser = (users) => {
         let roles = [];
-        for (let i = 0; i < users.length; i++) {
+        for (let i = 0; i < users.length && i < 5; i++) {
             roles.push(users[i])
         }
         return roles

@@ -48,7 +48,7 @@ const EditProfile = () => {
         const res = updateUserThunk(newProfile)
         dispatch(res);
     };
-    console.log(currentUser._id);
+
     return (
         <div className="container w-50">
             <div className="d-flex align-items-center row mt-2 mb-2">
