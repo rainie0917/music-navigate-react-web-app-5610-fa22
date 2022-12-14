@@ -6,15 +6,18 @@ import {useNavigate} from "react-router";
 import * as service from "../services/search-service"
 import SongStats from "../songs/songStats";
 import SongItem from '../songs/song-item.js';
+import {logoutThunk} from "../services/users-thunks";
 
 const UserLikedSongForHome = () => {
   const {currentUser} = useSelector((state) => state.users)
   const dispatch = useDispatch()
   const navigate = useNavigate();
+  const handleLogout = () => {
+    dispatch(logoutThunk())
+  }
 
   const search = useSelector(state => state.search)
   const detail = search.currentTrack
-  // console.log(currentUser.likedSongs)
 
   const [likedsongsData, setLikedsongsData] = useState([])
   useEffect(()=>{
@@ -37,15 +40,6 @@ const UserLikedSongForHome = () => {
 
   return(
       <>
-        {/*<ul className="list-group">*/}
-        {/*  {*/}
-        {/*    likedsongsData.map((likedSong) =>*/}
-        {/*        <SongItem key={likedSong.track._id}*/}
-        {/*                  song={likedSong}/>,*/}
-        {/*    )*/}
-        {/*  }*/}
-        {/*</ul>*/}
-
         <div className="rounded row m-0 ps-2 pe-2 pt-2 pb-2">
           {/*<div className="col-2 justify-content-center">*/}
           {/*  likedsongsData.map((likedSong) =>*/}
@@ -62,21 +56,20 @@ const UserLikedSongForHome = () => {
                       {/*{likedSong.track.artist}*/}
                       {/*</span>*/}
                     </div>
-                    {/*<div className="text-muted">{likedSong.track.album}</div>*/}
-                    <div><img alt="icon" className=" wd-avatar" src={likedSong.track.realImg} height="100px"/></div>
+                    {/*<div className="text-muted">{likedSong.track.artist}</div>*/}
+                    {/*<div className="text-muted">{likedSong.track.likes}</div>*/}
+                    <div className="col-2 justify-content-center"><img alt="icon" className=" wd-avatar" src={likedSong.track.album.image[3]["#text"]} height="100px"/>
+                    </div>
                     <button className="btn btn-primary m-1 float-end" onClick={() => getDetails(likedSong.track.mbid)}>Detail</button>
                     <button className="btn btn-primary m-1 float-end">Play</button>
                   </li>
               )
             }
           </ul>
+          {/*<div className="float-end mt-5">*/}
+          {/*  <button className="btn btn-danger position-absolute end-0" onClick={handleLogout}>Logout</button>*/}
+          {/*</div>*/}
         </div>
-
-
-
-
-
-
       </>
   )
 }
