@@ -52,16 +52,15 @@ const UserLikedSongForHome = () => {
               likedsongsData.map((likedSong) =>
                   <li className="list-group-item" key={likedSong.track.mbid}>
                     <div className="fw-bold">{likedSong.track.name}
-                      {/*<span className="px-2 fs-6 fw-normal">*/}
-                      {/*{likedSong.track.artist}*/}
-                      {/*</span>*/}
+                      <span className="px-2 fs-6 fw-normal">
+                      {likedSong.track.artist.name}
+                      </span>
                     </div>
-                    {/*<div className="text-muted">{likedSong.track.artist}</div>*/}
-                    {/*<div className="text-muted">{likedSong.track.likes}</div>*/}
-                    <div className="col-2 justify-content-center"><img alt="icon" className=" wd-avatar" src={likedSong.track.album.image[3]["#text"]} height="100px"/>
+                    <div><img alt="icon" className=" wd-avatar" src={likedSong.track.album.image[3]["#text"]} height="100px"/>
+                      <span>
+                        <button className="btn btn-primary m-1 float-end" onClick={() => getDetails(likedSong.track.mbid)}>Detail</button>
+                        <button className="btn btn-primary m-1 float-end">Play</button></span>
                     </div>
-                    <button className="btn btn-primary m-1 float-end" onClick={() => getDetails(likedSong.track.mbid)}>Detail</button>
-                    <button className="btn btn-primary m-1 float-end">Play</button>
                   </li>
               )
             }

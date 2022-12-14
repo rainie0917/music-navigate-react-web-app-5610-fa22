@@ -22,7 +22,7 @@ const HomeComponent = () => {
             <h2 className="d-flex text-primary fw-bold mb-2">Songs You Liked</h2>
           </div>
           <UserLikedSongForHome/>
-          <div className="p-0 ms-3">
+          <div className="p-0 ms-4 pt-5">
               <button className="btn btn-danger" onClick={handleLogout}>Logout</button>
           </div>
         </ul>
