@@ -51,7 +51,6 @@ export const updateUser = async (userUpdates) => {
     await axios.put(`${USER_API_URL}/${uid}`, userUpdates) //Not sure about here
     return userUpdates;
 }
-const deleteUser = () => {}
 
 // export const updateUser = async (userUpdate) => {
 //     const response = await axios.put(`${USER_API_URL}/${userUpdate._id}`, userUpdate)

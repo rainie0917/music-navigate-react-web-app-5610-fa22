@@ -17,7 +17,6 @@ export const searchSongThunk = createAsyncThunk(
 		for (const track of tracks) {
 			let songInfo = await service.searchSongInDB(track.mbid)
 			// if track is in the DB, get details from DB
-			// console.log(track.mbid)
 			if(songInfo != null){
 				// if currentUser is in son
 				track.name = songInfo.name
@@ -56,15 +55,35 @@ export const searchSongThunk = createAsyncThunk(
 export const getDetailsThunk = createAsyncThunk(
 	'details',
 	async(mbid) =>{
+		// const data = await service.searchSongInfo(mbid)
+		// console.log(data)
+		// const DBInfo = await service.searchSongInDB(mbid)
+		// if(DBInfo != null){
+		// 	data.userNames = DBInfo.whoLiked
+		// }
+		// else{
+		// 	data.userNames = ["Be the first one who likes this song!"]
+		// }
+		// return data
 		const data = await service.searchSongInfo(mbid)
-		console.log(data)
 		const DBInfo = await service.searchSongInDB(mbid)
+		let userID
 		if(DBInfo != null){
-			data.userNames = DBInfo.whoLiked
+			userID = DBInfo.whoLiked
+			console.log(userID)
+			// for(let i = 0; i < userID.length; i++){
+			// 	console.log('1')
+			// }
+			// 	const userInfo = await findUserById(ID)
+			// 	console.log(userInfo)
+			// // data.userNames = DBInfo.whoLiked
+				data.userNames = userID
 		}
 		else{
 			data.userNames = ["Be the first one who likes this song!"]
 		}
+			// const userInfo = await findUserById(data.userIDs[i])
+			// console.log(userInfo)
 		return data
 		// const data = await service.searchSongInfo(mbid)
 		// const DBInfo = await service.searchSongInDB(mbid)
