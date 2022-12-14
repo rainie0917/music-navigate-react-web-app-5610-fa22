@@ -6,7 +6,6 @@ import TrackItem from "./track-item";
 
 const ResultComponent = () => {
 	const search = useSelector(state => state.search)
-	// console.log(search)
 	
 	return(
 		<>
@@ -14,7 +13,7 @@ const ResultComponent = () => {
 				<ul className="list-group">
 				{
 					search.tracks.map(track =>
-					<TrackItem key={track.url} track={track}>
+					<TrackItem key={track.url} track={track} >
 					</TrackItem>)
 				}
 				</ul>
