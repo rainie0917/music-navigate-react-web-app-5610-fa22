@@ -10,6 +10,12 @@ export const findUserById = async (uid) => {
     return user
 }
 
+export const findUserByUsername = async (username) => {
+    const response = await api.get(`${USER_API_URL}/username/${username}`)
+    const user = response.data
+    return user
+}
+
 export const register = async (user) => {
     const response = await api.post(`${BASE_API_URL}/register`, user)
     const newUser = response.data
@@ -44,16 +50,8 @@ export const createUser = () => {
 
 }
 
-export const updateUser = async (userUpdates) => {
-    const uid = userUpdates.uid
-    delete userUpdates.uid
-    
-    await axios.put(`${USER_API_URL}/${uid}`, userUpdates) //Not sure about here
-    return userUpdates;
-}
 
-// export const updateUser = async (userUpdate) => {
-//     const response = await axios.put(`${USER_API_URL}/${userUpdate._id}`, userUpdate)
-//     return userUpdate
-// >>>>>>> commit before pulling
-// }
+export const updateUser = async (userUpdate) => {
+    const response = await axios.put(`${USER_API_URL}/${userUpdate._id}`, userUpdate)
+    return userUpdate
+}

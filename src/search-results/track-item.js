@@ -13,7 +13,6 @@ const api = axios.create({withCredentials: true});
 
 const TrackItem = ({track: track}) => {
 	const currentUser = useSelector(state => state.users.currentUser)
-	// console.log(currentUser)
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
 	
@@ -29,8 +28,7 @@ const TrackItem = ({track: track}) => {
 			// if song in DB, like += 1
 			if(songInfo != null){
 				let whoLikedArr = JSON.parse(JSON.stringify(track.whoLiked))
-				whoLikedArr.push(currentUser._id)
-				// track.whoLiked = arr
+				whoLikedArr.push(currentUser.username)
 				dispatch(updateSongThunk([{
 					// ...track,
 					artist: track.artist,
@@ -41,40 +39,30 @@ const TrackItem = ({track: track}) => {
 					likes: track.likes + 1,
 					// liked: true,
 				}, true]))
-				// console.log(currentUser)
 				let likedSongsArr = JSON.parse(JSON.stringify(currentUser.likedSongs))
-				// console.log(likedSongsArr)
 				likedSongsArr.push(track.mbid)
-				// console.log(likedSongsArr)
 				const updatedUser = {
 					...currentUser,
 					likedSongs: likedSongsArr
 				}
-				// console.log(updatedUser)
 				dispatch(updateUserThunk(updatedUser))
 			}
 			// if song not in DB, create song in DB
 			else{
 				dispatch(createSongThunk([{
-					// ...track,
 					artist: track.artist,
 					realImg: track.realImg,
 					mbid: track.mbid,
 					name: track.name,
-					whoLiked: [currentUser._id],
+					whoLiked: [currentUser.username],
 					likes: 1,
-					// liked: true,
 				}, true]))
-				// console.log(currentUser)
 				let likedSongsArr = JSON.parse(JSON.stringify(currentUser.likedSongs))
-				// console.log(likedSongsArr)
 				likedSongsArr.push(track.mbid)
-				// console.log(likedSongsArr)
 				const updatedUser = {
 					...currentUser,
 					likedSongs: likedSongsArr
 				}
-				// console.log(updatedUser)
 				dispatch(updateUserThunk(updatedUser))
 			}
 		}
@@ -86,7 +74,7 @@ const TrackItem = ({track: track}) => {
 	
 	const unLikeASong = async (track) =>{
 		if(currentUser != null) {
-			let whoLikedArr = track.whoLiked.filter(i => i !== currentUser._id)
+			let whoLikedArr = track.whoLiked.filter(i => i !== currentUser.username)
 			dispatch(updateSongThunk([{
 				artist: track.artist,
 				realImg: track.realImg,
@@ -95,14 +83,11 @@ const TrackItem = ({track: track}) => {
 				whoLiked: whoLikedArr,
 				likes: track.likes - 1,
 			}, false]))
-			// console.log(currentUser)
 			let likedSongsArr = currentUser.likedSongs.filter(i => i !== track.mbid)
-			// console.log(likedSongsArr)
 			const updatedUser = {
 				...currentUser,
 				likedSongs: likedSongsArr
 			}
-			// console.log(updatedUser)
 			dispatch(updateUserThunk(updatedUser))
 		}
 		else{

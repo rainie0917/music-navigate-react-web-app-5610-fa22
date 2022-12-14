@@ -1,7 +1,5 @@
 import {createAsyncThunk} from "@reduxjs/toolkit"
 import * as service from "./search-service"
-import {useSelector} from "react-redux";
-import {findUserById} from "./users-service";
 
 
 export const searchSongThunk = createAsyncThunk(
@@ -25,7 +23,7 @@ export const searchSongThunk = createAsyncThunk(
 				track.album = songInfo.album
 				track.realImg = songInfo.realImg
 				track.likedByCurrentUser =  false
-				if(currentUser != null && songInfo.whoLiked.indexOf(currentUser._id) > -1){
+				if(currentUser != null && songInfo.whoLiked.indexOf(currentUser.username) > -1){
 					track.likedByCurrentUser = true
 				}
 				
@@ -47,7 +45,6 @@ export const searchSongThunk = createAsyncThunk(
 			}
 		}
 		data.results.trackmatches.track = tracks;
-		// console.log(data)
 		return data
 	}
 )
@@ -55,54 +52,15 @@ export const searchSongThunk = createAsyncThunk(
 export const getDetailsThunk = createAsyncThunk(
 	'details',
 	async(mbid) =>{
-		// const data = await service.searchSongInfo(mbid)
-		// console.log(data)
-		// const DBInfo = await service.searchSongInDB(mbid)
-		// if(DBInfo != null){
-		// 	data.userNames = DBInfo.whoLiked
-		// }
-		// else{
-		// 	data.userNames = ["Be the first one who likes this song!"]
-		// }
-		// return data
 		const data = await service.searchSongInfo(mbid)
 		const DBInfo = await service.searchSongInDB(mbid)
-		let userID
 		if(DBInfo != null){
-			userID = DBInfo.whoLiked
-			console.log(userID)
-			// for(let i = 0; i < userID.length; i++){
-			// 	console.log('1')
-			// }
-			// 	const userInfo = await findUserById(ID)
-			// 	console.log(userInfo)
-			// // data.userNames = DBInfo.whoLiked
-				data.userNames = userID
+			data.userNames = DBInfo.whoLiked
 		}
 		else{
 			data.userNames = ["Be the first one who likes this song!"]
 		}
-			// const userInfo = await findUserById(data.userIDs[i])
-			// console.log(userInfo)
 		return data
-		// const data = await service.searchSongInfo(mbid)
-		// const DBInfo = await service.searchSongInDB(mbid)
-		// let userIDs
-		// let userNames
-		// if(DBInfo != null){
-		// 	userIDs = DBInfo.whoLiked
-		// 	for(var i = 0; i < userIDs.length; i++){
-		// 		const userInfo = await findUserById(userIDs[i])
-		// 		const userName = userInfo.username
-		// 		userNames.push(userName)
-		// 	}
-		// }
-		// else{
-		// 	userNames = ["Be the first one who likes this song!"]
-		// }
-		// data.userNames = userNames
-		// console.log(data)
-		// return data
 	}
 )
 
