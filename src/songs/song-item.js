@@ -8,12 +8,6 @@ const SongItem =  ({song}) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  // const search = useSelector((state) => state.search);
-  // const detail = search.currentTrack
-  //
-  // console.log(search)
-  // console.log(detail)
-
   const getDetails = async (mbid) => {
     // console.log(mbid)
     await dispatch(getDetailsThunk(mbid))
