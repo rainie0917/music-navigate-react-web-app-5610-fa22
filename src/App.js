@@ -47,11 +47,7 @@ function App() {
                                  style={{"position": "relative"}}>
                                 <Routes>
                                     <Route index element={<HomeComponent/>}/>
-                                    <Route path="/users" element={
-                                        <ProtectedRoute>
-                                            <Users/>
-                                        </ProtectedRoute>
-                                    }/>
+                                    <Route path="/users" element={<Users/>}/>
                                     <Route path="/home" element={<HomeComponent/>}/>
                                     <Route path="/register" element={<Register/>}/>
                                     <Route path="/login" element={<Login/>}/>
