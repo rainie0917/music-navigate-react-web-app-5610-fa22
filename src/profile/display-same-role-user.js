@@ -1,11 +1,7 @@
 import React, {useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {Link} from "react-router-dom";
 import {findAllUsersThunk, findUserByIdThunk} from "../services/users-thunks";
 import {useNavigate} from "react-router";
-import {getDetailsThunk} from "../services/search-thunks";
-
-
 
 const SameRoleUser = () => {
     const {users} = useSelector((state) => state.users)
@@ -13,7 +9,7 @@ const SameRoleUser = () => {
     const dispatch = useDispatch()
     useEffect(() => {
         dispatch(findAllUsersThunk())
-    }, [])
+    }, [dispatch])
 
     const findSameRoleUser = (users, currentUser) => {
         let roles = [];

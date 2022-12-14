@@ -30,10 +30,12 @@ const Login = () => {
         <input
             className="form-control mb-2"
             value={username}
+            placeholder="Username"
             onChange={(e) => setUsername(e.target.value)}/>
         <input
             className="form-control mb-2"
             value={password}
+            placeholder="Password"
             onChange={(e) => setPassword(e.target.value)}/>
         <button
             onClick={handleLoginBtn}
