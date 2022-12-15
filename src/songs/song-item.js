@@ -18,7 +18,7 @@ const SongItem =  ({song}) => {
   return (
       <>
         <div className="rounded row m-0 ps-2 pe-2 pt-2 pb-2">
-          <div className="col-2 justify-content-center">
+          <div className=" col-xxl-2 col-xl-3 col-lg-3 col-md-4 col-sm-3 justify-content-center">
             <div><img alt="icon" className=" wd-avatar" src={song.realImg} height="100px"/></div>
           </div>
 

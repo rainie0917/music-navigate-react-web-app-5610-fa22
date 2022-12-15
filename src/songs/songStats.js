@@ -71,10 +71,6 @@ const SongStats = ({ song }) => {
           {song.likes}
         </div>
       </div>
-
-
-
-
   );
 };
 
