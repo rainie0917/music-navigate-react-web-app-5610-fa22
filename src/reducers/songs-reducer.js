@@ -42,7 +42,7 @@ const songsSlice = createSlice({
         (state, { payload }) => {
           state.loading = false
           const songNdx = state.songs
-          .findIndex((s) => s._id === payload._id)
+          .findIndex((s) => s.mbid === payload.mbid)
           state.songs[songNdx] = {
             ...state.songs[songNdx],
             ...payload

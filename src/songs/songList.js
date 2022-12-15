@@ -8,13 +8,14 @@ import {findSongsThunk}
 
 
 const SongsList = () => {
-  // const songs = useSelector((state) => state.songs);
-  const {songs, loading} = useSelector(
-      state => state.songsData)
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(findSongsThunk())  // fx
   }, [])
+  
+  const {songs, loading} = useSelector(
+      state => state.songsData)
+  
   return (
       <ul className="list-group">
         {

@@ -19,7 +19,6 @@ const UserLikedSongForHome = () => {
     for (let i = 0; i < currentUser.likedSongs.length; i++) {
       const mbid = currentUser.likedSongs[i]
       tasks.push(service.searchSongInfo(mbid))
-      console.log(likedsongsData)
     }
     Promise.all(tasks).then((res) => {
       setLikedsongsData(res)

@@ -1,6 +1,6 @@
 import {useDispatch, useSelector} from 'react-redux';
 import React from 'react';
-import {updateSongThunk} from "../services/search-thunks"
+import {updateSongThunk} from "../services/songs-thunks"
 import {updateUserThunk} from "../services/users-thunks";
 import * as service from "../services/search-service";
 
