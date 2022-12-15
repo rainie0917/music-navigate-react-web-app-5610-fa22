@@ -1,5 +1,6 @@
 import axios from "axios";
 const SONG_API_URL = 'http://localhost:4000/api/songs'
+const SONGS_API_URL = 'http://localhost:4000/songs'
 // const BASE_API_URL = 'http://localhost:4000'
 // const api = axios.create({withCredentials: true});
 

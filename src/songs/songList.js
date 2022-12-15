@@ -15,7 +15,6 @@ const SongsList = () => {
   useEffect(() => {
     dispatch(findSongsThunk())
   }, [])
-
   return (
       <ul className="list-group">
         {

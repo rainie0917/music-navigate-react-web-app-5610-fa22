@@ -12,7 +12,7 @@ export const searchSongThunk = createAsyncThunk(
 		data.title = title;
 		const tracks = data.results.trackmatches.track.filter(track => track.mbid != "")
 		
-		for (const track of tracks) {
+		for (let track of tracks) {
 			let songInfo = await service.searchSongInDB(track.mbid)
 			// if track is in the DB, get details from DB
 			if(songInfo != null){
