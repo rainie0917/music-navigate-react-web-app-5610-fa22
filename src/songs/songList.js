@@ -13,7 +13,7 @@ const SongsList = () => {
       state => state.songsData)
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(findSongsThunk())
+    dispatch(findSongsThunk())  // fx
   }, [])
   return (
       <ul className="list-group">

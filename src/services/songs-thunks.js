@@ -1,5 +1,5 @@
 import {createAsyncThunk} from "@reduxjs/toolkit";
-import {searchSongInDB} from "./search-service";
+import {searchSongInDB, updateSong} from "./search-service";
 import * as service
   from "./songs-service"
 
@@ -25,9 +25,17 @@ export const findSongsThunk = createAsyncThunk(
     }
 )
 
-export const updateSongThunk =
-    createAsyncThunk(
-        'songs/updateSong',
-        async (song) =>
-         await service.updateSong(song)
-    )
+// export const updateSongThunk =
+//     createAsyncThunk(
+//         'songs/updateSong',
+//         async (song) =>
+//          await service.updateSong(song)
+//     )
+
+export const updateSongThunk = createAsyncThunk(
+    'update',
+    async(arr) => {
+        const data = await updateSong(arr)
+        return data
+    }
+)

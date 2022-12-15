@@ -9,22 +9,28 @@ const SongStats = ({ song }) => {
   const currentUser = useSelector(state => state.users.currentUser)
   
   const unLikeASong = async (track) =>{
-    let whoLikedArr = track.whoLiked.filter(i => i !== currentUser.username)
-    console.log(whoLikedArr)
-    dispatch(updateSongThunk([{
-      artist: track.artist,
-      realImg: track.realImg,
-      mbid: track.mbid,
-      name: track.name,
-      whoLiked: whoLikedArr,
-      likes: track.likes - 1,
-    }, false]))
-    let likedSongsArr = currentUser.likedSongs.filter(i => i !== track.mbid)
-    const updatedUser = {
-      ...currentUser,
-      likedSongs: likedSongsArr
-    }
-    dispatch(updateUserThunk(updatedUser))
+      if(currentUser != null) {
+          let whoLikedArr = track.whoLiked.filter(i => i !== currentUser.username)
+          console.log(whoLikedArr)
+          dispatch(updateSongThunk([{
+              artist: track.artist,
+              realImg: track.realImg,
+              mbid: track.mbid,
+              name: track.name,
+              whoLiked: whoLikedArr,
+              likes: track.likes - 1,
+          }, false]))
+          let likedSongsArr = currentUser.likedSongs.filter(i => i !== track.mbid)
+          const updatedUser = {
+              ...currentUser,
+              likedSongs: likedSongsArr
+          }
+          dispatch(updateUserThunk(updatedUser))
+      }
+      else{
+          alert("Please log in to like/unlike a song!")
+      }
+
   }
   
   const likeASong = async (track) => {
