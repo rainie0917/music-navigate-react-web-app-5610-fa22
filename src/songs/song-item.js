@@ -8,6 +8,8 @@ import * as service from "../services/search-service"
 const SongItem =  ({song}) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  console.log("update there")
+
 
   const getDetails = async (mbid) => {
     // console.log(mbid)
@@ -39,7 +41,7 @@ const SongItem =  ({song}) => {
             </div>
 
             <div className="d-flex">
-               <SongStats song={song} />
+               <SongStats song={song}/>
               <button onClick={() => getDetails(song.mbid)} className="btn btn-primary m-1">Detail</button>
               <button className="btn btn-primary m-1">Play</button>
 

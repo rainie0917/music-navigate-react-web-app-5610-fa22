@@ -7,6 +7,7 @@ import * as service from "../services/search-service";
 const SongStats = ({ song }) => {
   const dispatch = useDispatch();
   const currentUser = useSelector(state => state.users.currentUser)
+  console.log("Any update?")
 
   const unLikeASong = async (track) =>{
     if(currentUser != null) {
@@ -64,10 +65,10 @@ const SongStats = ({ song }) => {
         <div>
           {/*unlike a song*/}
           {song.likedByCurrentUser && <i onClick={() => unLikeASong(song)}
-                                         className="fa-solid fa-heart  fs-6 text-danger"/>}
+                                         className="fa-solid fa-heart  fs-6 text-danger p-1"/>}
           {/*likes a song*/}
           {!song.likedByCurrentUser && <i onClick={() => likeASong(song)}
-                                          className="fa-regular fa-heart  fs-6 fw-light"/>}
+                                          className="fa-regular fa-heart  fs-6 fw-light p-1"/>}
           {song.likes}
         </div>
       </div>

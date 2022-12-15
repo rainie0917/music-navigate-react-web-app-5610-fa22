@@ -37,12 +37,12 @@ const searchSlice = createSlice({
 			},
 		[updateSongThunk.fulfilled]:
 			(state, action) => {
-			console.log("update")
 				const trackIdx = state.tracks.findIndex((t) => t.mbid === action.payload.mbid)
 				state.tracks[trackIdx] = {
 					...state.tracks[trackIdx],
 					...action.payload
 				}
+				console.log("update")
 			}
 	},
 

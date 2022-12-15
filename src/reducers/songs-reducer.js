@@ -1,7 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
 import songs from '../songs/songs.json';
-import {findSongsThunk,updateSongThunk}
+import {findSongsThunk}
   from "../services/songs-thunks";
+import {updateSongThunk}
+  from "../services/search-thunks";
 
 const initialState = {
   songs: [],
@@ -40,6 +42,7 @@ const songsSlice = createSlice({
         },
     [updateSongThunk.fulfilled]:
         (state, { payload }) => {
+      console.log("Must update")
           state.loading = false
           const songNdx = state.songs
           .findIndex((s) => s._id === payload._id)
