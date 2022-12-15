@@ -69,7 +69,6 @@ const TrackItem = ({track: track}) => {
 		else{
 			alert("Please log in to like/unlike a song!")
 		}
-
 	}
 	
 	const unLikeASong = async (track) =>{
@@ -94,6 +93,8 @@ const TrackItem = ({track: track}) => {
 			alert("Please log in to like/unlike a song!")
 		}
 	}
+
+
 	return(
 		<li className="list-group-item">
 			<div className="row">

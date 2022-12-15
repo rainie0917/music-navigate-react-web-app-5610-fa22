@@ -42,6 +42,7 @@ const searchSlice = createSlice({
 					...state.tracks[trackIdx],
 					...action.payload
 				}
+				console.log("update")
 			}
 	},
 
