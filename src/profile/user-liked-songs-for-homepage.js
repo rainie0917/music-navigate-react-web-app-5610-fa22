@@ -4,9 +4,6 @@ import React, {useEffect, useMemo, useState} from "react";
 import {getDetailsThunk} from "../services/search-thunks";
 import {useNavigate} from "react-router";
 import * as service from "../services/search-service"
-import SongStats from "../songs/songStats";
-import SongItem from '../songs/song-item.js';
-import {logoutThunk} from "../services/users-thunks";
 
 const UserLikedSongForHome = () => {
   const {currentUser} = useSelector((state) => state.users)

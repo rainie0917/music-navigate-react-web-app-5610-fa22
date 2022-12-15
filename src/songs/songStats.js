@@ -1,10 +1,31 @@
 import {useDispatch, useSelector} from 'react-redux';
 import React from 'react';
-import {updateSongThunk} from "../services/songs-thunks";
+// import {updateSongThunk} from "../services/songs-thunks";
+import {updateSongThunk} from "../services/search-thunks"
+import {updateUserThunk} from "../services/users-thunks";
 
 const SongStats = ({ song }) => {
+  console.log(song)
   const dispatch = useDispatch();
   const {currentUser} = useSelector((state) => state.users)
+  const unLikeASong = async (track) =>{
+    let whoLikedArr = track.whoLiked.filter(i => i !== currentUser.username)
+    console.log(whoLikedArr)
+    dispatch(updateSongThunk([{
+      artist: track.artist,
+      realImg: track.realImg,
+      mbid: track.mbid,
+      name: track.name,
+      whoLiked: whoLikedArr,
+      likes: track.likes - 1,
+    }, false]))
+    let likedSongsArr = currentUser.likedSongs.filter(i => i !== track.mbid)
+    const updatedUser = {
+      ...currentUser,
+      likedSongs: likedSongsArr
+    }
+    dispatch(updateUserThunk(updatedUser))
+  }
 
   return (
       <div className='col-12 d-flex pt-2 pe-5 justify-content-between'>
@@ -12,11 +33,11 @@ const SongStats = ({ song }) => {
           {
               song.liked && currentUser &&
               <button
-                  onClick={() => dispatch(updateSongThunk({
-                    ...song,
-                    likes: song.likes - 1,
-                    liked: false
-                  }))}
+                  onClick={() => unLikeASong(song)}
+                  // onClick={() => dispatch(updateSongThunk([{
+                  //   ...song,
+                  //   likes: song.likes - 1,
+                  // }, false]))}
                   className='btn btn-sm'>
                 {/*<i className='fa-solid fa-heart  fs-6 text-danger' style={{color: 'red'}}/> {song.whoLiked.length}*/}
                 <i className='fa-solid fa-heart  fs-6 text-danger' style={{color: 'red'}}/> {song.likes}
@@ -56,20 +77,6 @@ const SongStats = ({ song }) => {
                 <i className='fa-regular fa-heart'/> {song.likes}
               </button>
           }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
           {/*{*/}
           {/*    song.liked &&*/}

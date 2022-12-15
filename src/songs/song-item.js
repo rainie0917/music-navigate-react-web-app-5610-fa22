@@ -3,6 +3,7 @@ import {useDispatch, useSelector} from 'react-redux';
 import {useNavigate} from "react-router";
 import SongStats from "../songs/songStats";
 import {getDetailsThunk} from "../services/search-thunks";
+import * as service from "../services/search-service"
 
 const SongItem =  ({song}) => {
   const dispatch = useDispatch();
