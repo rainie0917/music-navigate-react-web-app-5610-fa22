@@ -26,6 +26,9 @@ const UserLikedSong = () => {
         })
     },[currentUser.likedSongs])
 
+    console.log(likedsongsData)
+
+
     const getDetails = async (mbid) => {
         await dispatch(getDetailsThunk(mbid))
         navigate(`/details/${mbid}`);

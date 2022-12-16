@@ -5,6 +5,7 @@ import {findAllUsersThunk, findUserByIdThunk, deleteUserThunk, logoutThunk} from
 
 const Users = () => {
     const {users, loading} = useSelector((state) => state.users)
+    const {currentUser} = useSelector((state) => state.users)
     console.log(users);
     const dispatch = useDispatch()
     useEffect(() => {
