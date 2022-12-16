@@ -43,11 +43,12 @@ const EditProfile = () => {
             password: password,
             firstName: firstName,
             lastName: lastName,
-            uid: currentUser._id
+            _id: currentUser._id
         }
         const res = updateUserThunk(newProfile)
         dispatch(res);
     };
+    console.log(currentUser._id)
 
     return (
         <div className="container w-50">

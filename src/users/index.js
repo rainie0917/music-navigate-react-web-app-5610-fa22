@@ -22,13 +22,9 @@ const Users = () => {
         console.log("User has been deleted!")
     }
 
-    const handleLogout = () => {
-            dispatch(logoutThunk())
-    }
 
     return(
         <>
-            <button className="btn btn-danger" onClick={handleLogout}>Logout</button>
             <h2 className="d-flex justify-content-center text-primary fw-bold mt-3 mb-2">Manage Users {users.length}</h2>
             <ul className="list-group">
                 {

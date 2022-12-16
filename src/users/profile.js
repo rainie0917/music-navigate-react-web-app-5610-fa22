@@ -58,7 +58,6 @@ const Profile = () => {
             </div>
             <SameRoleUser/>
             <UserLikedSong/>
-            {/*<DisplayUserToAnonynous/>*/}
         </>
     )
 }
