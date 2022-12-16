@@ -12,7 +12,7 @@ const UserLikedSong = () => {
 
     const search = useSelector(state => state.search)
     const detail = search.currentTrack
-    console.log(currentUser.likedSongs)
+    // console.log(currentUser.likedSongs)
 
     const [likedsongsData, setLikedsongsData] = useState([])
     useEffect(()=>{

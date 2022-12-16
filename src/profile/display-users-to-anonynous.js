@@ -29,7 +29,7 @@ const DisplayUserToAnonynous = () => {
 
     return(
         <>
-            <h2 className="d-flex justify-content-center text-primary fw-bold mt-3 mb-2">Users You Might Interested</h2>
+            <h2 className="d-flex text-primary fw-bold mt-2 mb-2">Users You Might Interested</h2>
             <ul className="list-group">
                 {
                     (Array.from(findUser(users))).map((user) =>

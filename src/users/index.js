@@ -1,6 +1,6 @@
 import {useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {useNavigate} from "react-router";
+import {Navigate, useNavigate} from "react-router";
 import {findAllUsersThunk, findUserByIdThunk, deleteUserThunk, logoutThunk} from "../services/users-thunks.js";
 
 const Users = () => {
@@ -14,13 +14,12 @@ const Users = () => {
     }, [dispatch])
 
     const navigate = useNavigate();
-    const getProfiles = async (id) => {
-        dispatch(findUserByIdThunk(id))
-        navigate(`/profile/${id}`);
-    }
 
     const deleteUserHandler = (id) => {
         dispatch(deleteUserThunk(id));
+        window.location.reload(true);
+        alert("User has been deleted successfully!")
+        console.log("User has been deleted!")
     }
 
     const handleLogout = () => {
@@ -42,8 +41,21 @@ const Users = () => {
                     users.map((user) =>
                     <li className="list-group-item"
                         key={user._id}>
-                        <span onClick={() => getProfiles(user._id)}>Username: {user.username}</span>
-                        <i className="bi bi-x-lg float-end" onClick={() => deleteUserHandler(user._id)}></i>
+                        <div>
+                            <div className="row justify-content-between">
+                                <div className="fw-bold mb-0 text-secondary col-auto">UserID: {user._id}</div>
+                                <button className="btn btn-danger col-2" onClick={() => deleteUserHandler(user._id)}>Delete</button>
+                                <div className="ms-3">
+                            </div>
+                                <ul className="list-group list-group-flush">
+                                    <li className="list-group-item w-75"><div className="fw-bold mb-0 text-secondary">Email:<span className="text-dark ps-2">{user.username}</span></div></li>
+                                    <li className="list-group-item w-75"><div className="fw-bold mb-0 text-secondary">Email:<span className="text-dark ps-2">{user.email}</span></div></li>
+                                    <li className="list-group-item w-75"><div className="fw-bold mb-0 text-secondary">Last Name:<span className="text-dark ps-2">{user.lastName}</span></div></li>
+                                    <li className="list-group-item w-75"><div className="fw-bold mb-0 text-secondary">First Name:<span className="text-dark ps-2">{user.firstName}</span></div></li>
+                                    <li className="list-group-item w-75"><div className="fw-bold mb-0 text-secondary">Role<span className="text-dark ps-2">{user.role}</span></div></li>
+                                </ul>
+                            </div>
+                        </div>
                     </li>
                     )
                 }
