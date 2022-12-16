@@ -13,11 +13,17 @@ const searchSlice = createSlice({
 		tracks: [],
 		mbid: "",
 		currentTrack:{},
+		loading: false
 	},
 	
 	extraReducers: {
+		[searchSongThunk.pending]:
+			(state, action) => {
+				state.loading = true
+			},
 		[searchSongThunk.fulfilled]:
 			(state, action) => {
+				state.loading = false
 				const currentSearch = action.payload.title
 				state.title = currentSearch
 

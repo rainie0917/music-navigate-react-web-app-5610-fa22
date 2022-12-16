@@ -25,6 +25,7 @@ export const updateSong = async(arr) => {
 	const likedByCurrentUser = arr[1]
 	const response = await axios.put(`${SONGS_API_URL}/${song.mbid}`, song)
 	song.likedByCurrentUser = likedByCurrentUser
+	console.log(song)
 	return song
 }
 
