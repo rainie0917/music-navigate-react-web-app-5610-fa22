@@ -26,7 +26,7 @@ const UserLikedSong = () => {
         })
     },[currentUser.likedSongs])
 
-    console.log(likedsongsData)
+    // console.log(likedsongsData)
 
 
     const getDetails = async (mbid) => {

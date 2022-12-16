@@ -4,6 +4,7 @@ import {Link} from "react-router-dom";
 import SameRoleUser from "../profile/display-same-role-user";
 import UserLikedSong from "../profile/user-liked-song";
 import DisplayUserToAnonynous from "../profile/display-users-to-anonynous";
+import FollowedUsers from "../profile/followed-users";
 
 const Profile = () => {
     const {currentUser} = useSelector((state) => state.users)
@@ -36,6 +37,7 @@ const Profile = () => {
                 </div>
                 <SameRoleUser/>
                 <UserLikedSong/>
+                <FollowedUsers/>
             </>
         )
     }
@@ -58,6 +60,7 @@ const Profile = () => {
             </div>
             <SameRoleUser/>
             <UserLikedSong/>
+            <FollowedUsers/>
         </>
     )
 }
